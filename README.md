@@ -10,7 +10,7 @@ The official documentation can be found below:
 * [Radio Programming Software](https://ba4tb.qth.com/download/HG-UV98%20EN%20%20V2.0%20setup.rar) 
 * [APRS Programming Software](http://www.ba4tb.qth.com/download/APRS_51Serial_20190525_A.rar)
 
-Русская документация  
+Русская документация (инструкция Lanchonlh HG-UV98)
  * [Инструкция](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual)
 
 Software

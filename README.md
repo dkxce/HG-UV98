@@ -11,13 +11,13 @@ The official documentation can be found below:
 * [APRS Programming Software](http://www.ba4tb.qth.com/download/APRS_51Serial_20190525_A.rar)
 
 Русская документация  
- * https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual
+ * [Инструкция](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual)
 
 Software
- * https://github.com/dkxce/AGWBridge
- * https://github.com/dkxce/KISSTNCLanchHG-UV98
- * https://github.com/dkxce/APRSWin
- * https://github.com/dkxce/KMZViewer
+ * [AGWBridge](https://github.com/dkxce/AGWBridge)
+ * [KISSTNSLanch](https://github.com/dkxce/KISSTNCLanchHG-UV98)
+ * [APRSWin](https://github.com/dkxce/APRSWin)
+ * [KMZViewer](https://github.com/dkxce/KMZViewer)
 
 ### Bugs / Feature Requests
 

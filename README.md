@@ -10,6 +10,15 @@ The official documentation can be found below:
 * [Radio Programming Software](https://ba4tb.qth.com/download/HG-UV98%20EN%20%20V2.0%20setup.rar) 
 * [APRS Programming Software](http://www.ba4tb.qth.com/download/APRS_51Serial_20190525_A.rar)
 
+Русская документация  
+ * https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual
+
+Software
+ * https://github.com/dkxce/AGWBridge
+ * https://github.com/dkxce/KISSTNCLanchHG-UV98
+ * https://github.com/dkxce/APRSWin
+ * https://github.com/dkxce/KMZViewer
+
 ### Bugs / Feature Requests
 
 We're using the [Github Issue Tracker](https://github.com/marrold/HG-UV98/issues) to track bugs and feature requests. Please add and update them as required, but please remember this is a community page, there's no guarantee the manufacturer will see / resolve them.

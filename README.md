@@ -1,4 +1,4 @@
-This repository is for the HG-UV98 APRS radio. It will primarily be used to store files and to raise issues or feature requests.
+This repository is for the HG-UV98 APRS radio
 
 ### Documentation
 [ornotermes (SA5KPR)](https://github.com/ornotermes) has provided some great resources below:  
@@ -13,11 +13,15 @@ The official documentation can be found below:
 Русская документация (инструкция Lanchonlh HG-UV98)
  * [Инструкция](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual)
 
+English Manual
+ * [Manual](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual/tree/main/English)
+
 Software
- * [AGWBridge](https://github.com/dkxce/AGWBridge)
- * [KISSTNSLanch](https://github.com/dkxce/KISSTNCLanchHG-UV98)
- * [APRSWin](https://github.com/dkxce/APRSWin)
- * [KMZViewer](https://github.com/dkxce/KMZViewer)
+ * [Channels Edit, APRS, Drivers, Android, Serial](Software)
+ * [AGWBridge (work over Bluetooth)](https://github.com/dkxce/AGWBridge)
+ * [KISSTNSLanch (work over Bluetooth)](https://github.com/dkxce/KISSTNCLanchHG-UV98)
+ * [APRSWin (APRS, KISS TNC)](https://github.com/dkxce/APRSWin)
+ * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
 
 ### Bugs / Feature Requests
 

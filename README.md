@@ -22,6 +22,9 @@ Software
  * [KISSTNSLanch (work over Bluetooth)](https://github.com/dkxce/KISSTNCLanchHG-UV98)
  * [APRSWin (APRS, KISS TNC)](https://github.com/dkxce/APRSWin)
  * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
+ 
+Alternative Repository:             
+ https://github.com/pwnj0hn/HG-UV98
 
 ### Bugs / Feature Requests
 

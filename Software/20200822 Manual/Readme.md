@@ -1,5 +1,7 @@
 # X1C3 APRS Tracker: The Missing Manual
 
+[ORIGINAL HERE](https://github.com/Mihara/x1c3tool/blob/163a2c89a89dfa66d6e813860f687fe8251821e6/manual/manual.md)
+
 ![X1C3 APRS Tracker](device.jpg)
 
 This mysterious device, available from the manufacturer and in many an Aliexpress shop near you, is a battery-powered APRS tracker meant to attach to a variety of radios, combined with a Bluetooth TNC, with built-in digipeater functionality.

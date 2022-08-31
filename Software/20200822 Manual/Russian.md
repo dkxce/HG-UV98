@@ -129,6 +129,6 @@
 
 Иногда вы можете увидеть, как устройство отправляет `AT+KISS=OFF` и `AT+KISS=ON` в последовательный порт при перезапуске. При попытке отправить их оба фактически отвечают «ОК», но неясно, происходит ли что-нибудь в результате.        
 
-[APRS]: http://www.aprs.org/doc/APRS101.PDF          
-[MIC-E]: https://www.marcelpost.com/wiki/index.php/MIC-E             
+[APRS](http://www.aprs.org/doc/APRS101.PDF)         
+[MIC-E](https://www.marcelpost.com/wiki/index.php/MIC-E)             
 

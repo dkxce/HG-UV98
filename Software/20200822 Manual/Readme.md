@@ -2,63 +2,11 @@
 
 [ORIGINAL HERE](https://github.com/Mihara/x1c3tool/blob/163a2c89a89dfa66d6e813860f687fe8251821e6/manual/manual.md)
 
-![X1C3 APRS Tracker](device.jpg)
-
-This mysterious device, available from the manufacturer and in many an Aliexpress shop near you, is a battery-powered APRS tracker meant to attach to a variety of radios, combined with a Bluetooth TNC, with built-in digipeater functionality.
-
-The stock software is pretty horrible, and the stock manual is even worse, but the actual device is kinda neat, and is a decent alternative to the scarcely available [Mobilinkd TNC](http://www.mobilinkd.com/) that everyone else is recommending.
-
-I took it upon myself to write something that makes sense and here it is. This manual comes with a configuration saving/loading tool, `x1c3tool`, which you will find in the same Github repository as the manual itself. This tool, unfortunately, does not make the stock software obsolete.
-
-You can acquire the [stock software](http://venus-itech.com/download/APRS_51Serial_20190723.rar) at the [manufacturer's website](https://www.venus-itech.com/). The software is shared between multiple related models of the device, so I'm giving a link to the newer version, rather than the one that's on its own [product page](https://www.venus-itech.com/product/x1c3-aprs-tracker/).
-
-That's where you get the stock manual, in case you still need it.
-
-This manual only covers the functionality found in X1C3 itself. (And even then, mostly the features I could verify as working and properly document.) Other related devices that include it as a subset but also do other things are:
-
-* X1C5 self-contained tracker/Bluetooth TNC/iGate with built-in radio.
-* Lanchonlh HG-UV98 handheld radio with APRS.
-* 51TNC2, an Ethernet-connected TNC/iGate device.
-* 51-WG5 / 51-WG6 / 51-WG7 APRS add-on for Yaesu radios.
-
-Since I don't own any of them I can't say how much is actually different, but all of them use the same (or very similar) configuration software and quote the same barely comprehensible English lines in their manuals. All are derived from the work credited to BH4TDV, whether the said amateur is involved in their manufacture directly or not.
-
-## Hardware
-
-There are only two buttons -- marked `POWER` and `BT`. `BT` button enables and disables Bluetooth. There are few indications that the device is working beyond the Bluetooth light, which is constantly flashing when Bluetooth is not connected and holding when it is, and the GPS light, which is blue when GPS has a fix. If you turned Bluetooth off, you might not notice it's actually powered on at all, and it will eventually run the battery down, so beware.
-
-On power on, the device flashes the red TX light several times, indicating the level of battery charge:
-
-* 6 -- 100%, never happened to me in practice.
-* 5 -- 80%
-* 4 -- 60%
-* 3 -- 40%
-* 2 -- 20%
-* 1 -- ~0%
-
-The label `GPS` is positioned immediately above the GPS module's antenna, so presumably you want that side looking up into the sky if possible.
-
-The device uses a 103450 LiPo battery, which is easy enough to replace if needed. The battery is charged through the micro-USB plug, and the `CHG` light goes out once it is fully charged.
-
-The radio is connected with a supplied cable for K1 (Kenwood) microphone socket. Since the device properly handles PTT, there's no need for VOX. The pinout of the RJ11 socket it plugs into on the device's side is like so, with the plug's hook away from you and pins numbered left to right:
-
-![RJ11 diagram to prevent ambiguity](connector.gif)
-
-1 - NC, 2 - Microphone, 3 - GND, 4 - PTT, 5 - Speaker, 6 - NC
-
-The stock manual numbers the pins in reverse for some reason -- if you decide to make your own cable, double-check against the stock one. In case you're unsure, the pins are labeled on the motherboard itself.
-
-The K1 socket on the device itself is meant for an external passthrough microphone. APRS traffic is *not* muted on this mike, so its usefulness on the general APRS frequency is rather limited. Unfortunately, your typical K1 plug interferes with the placement of the micro-USB socket and will prevent connecting a microphone and a USB cable simultaneously unless you find a microphone with a rare straight K1 plug somewhere.
-
 ## Software
-
-Here's a marked up screenshot of the stock software that I will be explaining:
 
 ![X1C3 setup tool](setup-marked.png)
 
 ### Connecting to the device
-
-You will need to ensure your system can use a CH340 USB-Serial converter. I'm not clear about OSX, but most Linux distributions handle them out of the box. Windows systems require installing a driver, unless you did that already. You can find a [CH340 driver on the manufacturer's website](http://www.wch.cn/download/CH341SER_EXE.html) or in any number of places across the net, since it's used in a lot of devices.
 
 Identify the section marked **0** on the picture of the setup tool UI and switch the user interface to English before you proceed. Unfortunately you will need to do that every time you start the setup tool.
 

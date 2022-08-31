@@ -24,7 +24,7 @@ Software
  * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
  
 Alternative Repository:             
- https://github.com/pwnj0hn/HG-UV98
+ * https://github.com/pwnj0hn/HG-UV98
 
 ### Bugs / Feature Requests
 

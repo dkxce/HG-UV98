@@ -18,16 +18,16 @@
 Обратите внимание, что даже если последовательный порт *подключится*, но устройство не подключено или находится не в требуемом режиме, 
 чтение конфигурации из него так же как и запись не получится.
 
-### Beaconing
+### Beaconing (Режим Маяка)
 
-В разделе **2** задается позывной и SSID, с которым устройство идентифицирует себя в эфире. При использовании в режиме прослушивания эфира никакие изменения не требуются. Данные устройства задаются, чтобы устройство самостоятельно работало в режиме Beaconing.
+В разделе **2** задается позывной и SSID, с которым устройство идентифицирует себя в эфире (подробнее см. в описании APRS). При использовании в режиме прослушивания эфира никакие изменения не требуются. Данные устройства задаются, чтобы устройство самостоятельно работало в режиме Beaconing.
 
-Раздел **3** в первую очередь касается правил отправки данных для Beaconing:
+Раздел **3** в первую очередь касается правил отправки данных для режима Маяка:
 
 * `GPS ON` включает и отключает встроенный GPS-приемник. Вы можете отключить этот флажок, переключиться в режим `SPORT`, и устройство не будет само подавать сигнал, потому что GPS выключен.
 * `Site` — это раскрывающийся список с обманчивым названием, который выбирает, должно ли устройство двигаться или работает стационарно:
   * `FIXED` - стационарный режим. Координаты для отправки берутся из полей раздела **4**. Значения отправляются как есть, поэтому необходимо написать их так, как они описаны в спецификации протокола APRS с указанием N/E/S/W в отдельных полях.
-  * 
+
     Установив `Site` на `FIXED`, отключив все флажки в разделе **3** и установив `Smart` в раскрывающемся списке `OFF`, вы получите чистый Bluetooth TNC режим, который не передает ничего.
     
   * `SPORT` - режим движения. В режиме `SPORT` для отправки координат маяка используются координаты с GPS-приемника. Режим отправки зависит от состояния других флажков и полей в Разделе **3**.
@@ -36,115 +36,98 @@
     
   * Режим `WS` не задокументирован.
   
-* Раскрывающийся список `Smart` либо отключен, либо включает [интеллектуальный режим](http://www.hamhud.net/hh2/smartbeacon.html) на основе шаблонов движения с использованием одного из предопределенных алгоритмов. Согласно руководству *для X1C5* это означает следующее:
+* Раскрывающийся список `Smart` либо отключает, либо включает [интеллектуальный режим](http://www.hamhud.net/hh2/smartbeacon.html) на основе шаблонов движения с использованием одного из предопределенных алгоритмов. Согласно руководству *для X1C5* это означает следующее:
   * `1` - Автомобиль. Интервал оправки координат - 20 сек.
   * `2` - Велосипед. Интервал оправки координат - 40 сек.
   * `3` - Пешеход. Интервал оправки координат - 60 сек.
   * `4` - Черепаха (скалолазание). Интервал оправки координат - 90 сек.
   * `5` - Околостационарный режим. Интервал оправки координат - 120 сек.
 
-* `Manual` заставляет устройство отправлять пакет координат при *отжатии* кнопки PTT, то есть сразу после того, как вы закончите говорить. 
+* `Manual` заставляет устройство отправлять пакет координат при *отпускании* кнопки PTT, то есть сразу после того, как вы закончите говорить. 
 * `Time` устанавливает интервал между автоматической отправкой пакетов координат в радиоэфир. Если установить `Smart` режим и поставить `Time`, скажем, на 300 секунд — пакет координат будет отправляться один раз в заданное количество секунд.
 * `Queue` довольно странная опция, потому что этот режим работает параллельно с любым другим. Если вы выберете этот режим, то устройство будет посылать пакеты координат каждую минуту в выбранную секунду из интервала (0..59) исходя из времени полученному по GPS. 
 
-Настройки APRS пакетов для Beaconing также находятся в Разделе **3**:
+Настройки APRS пакетов для режима Маяка в Разделе **3**:
 
-* `Path1` and `Path2` describe the digipeater path applied to the packets the device generates. Which APRS digipeater path to use is [a more involved discussion than this manual can accommodate](http://www.wa8lmf.net/DigiPaths/index.htm), but the reasonable default is `WIDE1`, `1`, `WIDE2`, `1`, which will translate to `WIDE1-1,WIDE2-1` and means "ask the local area digipeaters to repeat it once, and ask the wide area digipeaters to repeat it once too." Depending on digipeater activity in your area, you might want something else. Setting a faux-SSID dropdown to 0 disables the corresponding path component. Unfortunately, this means you can't have a path component without a SSID at all, though you can, for example, have just `WIDE2-1` as your digipeater path.
-* `Type` is the APRS data type identifier, described in the [protocol specification][APRS] on page 17. The factory default is `!`, i.e. that the beacon is a position without timestamp, which additionally indicates the device has no messaging capability. I don't know if anything seriously pays attention to the APRS data type in this day and age, but if you use the device as a tracker-plus-TNC, you might want to put `=` in that field. This will be ignored if you use `MIC-E`, as in that case, the data type identifier field is repurposed.
-* `MIC-E` checkbox enables [MIC-E compression][MIC-E], which packages the positioning data into otherwise less-relevant fields in the packet data structure and shortens the packet considerably. The nearby dropdown allows you to select a MIC-E status. If you don't enable this, [APRSDroid](https://aprsdroid.org/) in particular will display course, speed and altitude as part of the message itself, *(with no space between the start of the text message and the end of the speed/course/altitude data, too)* but I think it's actually APRSDroid parsing them wrong here. On the other hand, MIC-E compression is reported to be responsible for [data corruption in certain parts of the APRS network using archaic software](https://owenduffy.net/blog/?p=2326), so depending on where you are, you might want this off.
-* `Icon 1` and `Icon 2` allow you to select which APRS icon your beacon will be represented with. You can find the description of what they mean on page 90 of the [APRS protocol spec][APRS]. A more human-readable description can be found in [this APRS symbols list](https://www.aprsdirect.com/symbol/list) -- just remember that in the X1C3 software, the Code column of that table is on the right, and the Table ID column is on the left -- so `/`, `[` means an icon of a human.
+* `Path1` и «Path2» описывают путь дигипитера, применяемый к ретранслируемым пакетам, генерируемым устройством. Какой путь дигипитера APRS использовать [можно почитать здесь](http://www.wa8lmf.net/DigiPaths/index.htm), но разумным значением по умолчанию является `WIDE1`, `1`, ` WIDE2`, `1`, что будет переведено как `WIDE1-1,WIDE2-1` и означает «попросите локальные (домашние) цифровые репитеры повторить этот пакет один раз и глобальные (общественные) цифровые репитеры также повторить передаваемый пакет один раз». В зависимости от активности дигипитеров в вашем регионе вам может понадобиться что-то другое. Установка в раскрывающемся списке faux-SSID значения 0 отключает соответствующий компонент пути. К сожалению, это означает, что у вас вообще не может быть компонента пути без SSID, хотя вы можете, например, указать только `WIDE2-1` в качестве пути вашего дигипитера.
+* `Type` — это идентификатор типа данных APRS, описанный в спецификации протокола APRS Заводское значение по умолчанию — `!`, т. е. маяк представляет собой позицию без отметки времени, что дополнительно указывает на то, что устройство не имеет возможность обмена сообщениями. Я не знаю, обращают ли что-нибудь серьезное внимание на тип данных APRS в наши дни, но если вы используете устройство в качестве трекера плюс TNC, вы можете поставить `=` в этом поле. 
+* `MIC-E` включает сжатие MIC-E, которое упаковывает данные позиционирования в менее важные поля в структуре пакетных данных и значительно сокращает пакет. В раскрывающемся списке рядом можно выбрать статус MIC-E. Если вы не включите это, [APRSDroid](https://aprsdroid.org/), в частности, будет отображать курс, скорость и высоту как часть самого сообщения, *(без пробела между началом текстового сообщения и конец данных о скорости/курсе/высоте)*, но я думаю, что на самом деле APRSDroid неправильно их анализирует. С другой стороны, сжатие MIC-E, как сообщается, несет ответственность за [повреждение данных в определенных частях сети APRS с использованием архаичного программного обеспечения] (https://owenduffy.net/blog/?p=2326), поэтому в зависимости от того, где Вы, возможно, захотите отключить это.
+* `Icon 1` и `Icon 2` позволяют вам выбрать, каким значком APRS будет отображено ваше устройство. Вы можете найти описание того, что они означают в спецификации протокола APRS. Более удобочитаемое описание можно найти в [этом списке символов APRS](https://www.aprsdirect.com/symbol/list) — просто помните, что в программе столбец `Code` этой таблицы находится на справа, а столбец `ID` таблицы находится слева, поэтому `/`, `[` означает значок человека.
 
-  `Icon 1` pair of fields is the default beacon icon. The `Icon 2` pair, with an accompanying field of a number of seconds, will be sent if the device detects you were stationary for that number of seconds or longer -- defaulting to 180. By default, the second icon is a "parking" sign. If you don't want this feature, just set identical icons. Be aware that when using GPS power saving (described below) it's likely that positioning precision will suffer, and your device will be considered always moving, so you'll never see the second icon.
+ `Icon 1` является значком по умолчанию. `Icon 2` с дополнительным полем количества секунд будет установлен, если устройство неподвижно в течение этого времени или дольше (по умолчанию 180). По умолчанию второй значок —  `parking` «парковка». Если вам не нужна эта функция, просто установите одинаковые значки. Имейте в виду, что при использовании режима энергосбережения GPS (описанного ниже) точность позиционирования может пострадать, и ваше устройство будет считаться постоянно движущимся, поэтому второго значка вы никогда не увидите.
 
-Other important settings in Section **3**:
+Другие *важные* настройки в Разделе **3**:
 
-* `GPS Save(Manual/time)` enables GPS power saving mode. The GPS is kept off until it's time to beacon, upon which it is turned on, the position is reacquired, and the beacon is sent out. Smart beaconing requires a constant GPS fix to function, so if you turn on smart beaconing as well, this checkbox will be ignored.
-* `PTT delay` specifies a delay in microseconds between the start of transmission and the start of sound. As far as I can tell, this applies to all packets sent out by the device, including the ones coming in via KISS interface. Set something sensible depending on your radio.
+* `GPS Save(Manual/time)` включает режим энергосбережения GPS. В этом режиме GPS отключен до тех пор, пока не придет назначенное время или не наступит событие для отправки пакета координат. После чего GPS включается, определяется положение, и только потом пакет отправляется. Для работы `Smart beaconing`  требуется постоянное определение местоположения GPS, поэтому, если вы также включите `Smart beaconing`, этот флажок будет проигнорирован.
+* `PTT delay` определяет задержку в микросекундах между началом передачи и началом трансляции голоса. Насколько я могу судить, это относится ко всем пакетам, отправляемым устройством, включая те, которые приходят через интерфейс KISS.
 
-Other *unimportant* settings in Section **3**:
+Другие *неважные* настройки в Разделе **3**:
 
-* `CH`: Do not get confused by this dropdown. X1C3 shares much of its hardware and software with the APRS parts of **Lanchonlh HG-UV98** handheld radio, in which this dropdown controls which of the two VFOs beacon packets will go out on. Being an external device connecting over a microphone plug, X1C3 cannot select between VFOs, so this setting has no effect.
+* `CH`: Раскрывающийся список определяет, на каком канале `А` или `B` будут передаваться APRS пакеты. 
 
-Section **5** contains the fields describing extra information that goes into the message part of the beacon, as well as some tangentially related functions.
+Раздел **5** содержит поля, описывающие дополнительную информацию, которая входит в часть сообщения с координатами, а также некоторые косвенно связанные функции.
 
-* The unmarked text field starts the message and can contain more or less anything up to a limit of 60 bytes. Everything else gets tacked on at the end, separated by spaces.
-* `Mileage` checkbox will add the distance traveled. `Mileage memory` checkbox will enable saving the mileage counter between reboots if checked. `Mileage clear` button will clear this counter explicitly. As far as I can tell, mileage counter is part of the configuration EEPROM, so saving and loading configuration will mess it up anyway.
-* `Voltage` will add the battery voltage.
-* `Satellite` will add the number of currently visible satellites.
-* `Temp` is supposed to add the current temperature according to the sensor inside the device, which is higher than ambient. Ironically, ticking this checkbox off does nothing and the temperature gets added anyway in the 20201113 version of the firmware.
-* `Pressure` adds the pressure according to the sensor inside the device. Not only it's in hectopascales, this checkbox is broken like the temperature one.
-* `TX` button will force the device to beacon immediately. This can be used for testing and tuning your radio.
+* Неотмеченное текстовое поле начинает сообщение и может содержать что угодно, но не более 60 байт. Все остальное прикрепляется в конце, разделяя пробелами.
+* `Mileage` добавит пройденное расстояние. `Memory Distance` позволит сохранять счетчик пробега между выключчениями устройства, если он установлен. Кнопка `Mileage clear` явно очищает этот счетчик. Насколько я могу судить, счетчик пробега является частью конфигурации EEPROM, поэтому сохранение и загрузка конфигурации все равно его испортит.
+* `Voltage` добавит напряжение батареи.
+* `Satellite` добавит количество видимых в данный момент спутников.
+* `Temp` добавляет текущую температуру по датчику внутри устройства, которая выше температуры окружающей среды. По иронии судьбы снятие этого флажка ничего не дает, и температура все равно добавляется в версии прошивки 20201113.
+* `Pressure` добавляет давление в соответствии с датчиком внутри устройства. Мало того, что это в гектопаскалях, вдобавок этот флажок сломан, как и температурный.
+* `TX` заставит устройство немедленно отправить пакет. Это можно использовать для тестирования и настройки вашего радио.
 
-Everything you tack onto the beacon increases transmission time, so it's wise to turn off everything you don't actually need. Unfortunately, bugs prevent you from turning off temperature and pressure.
+Все, что вы прикрепляете к пакету координат, увеличивает время передачи, поэтому разумно отключить все, что вам на самом деле не нужно. К сожалению, баги мешают отключить температуру и давление.
 
-### Digipeating
+### Digipeating (Режим дигипитера/репитера)
 
-Whether the device will digipeat is described by the checkboxes in Section **6**. Both checkboxes correspond to two digipeater aliases the device listens to -- by default, `WIDE1` and `WIDE2`, which makes for a rudimentary, but effective enough digipeating capability.
+Чтобы устройство работало в режиме дигипитера, установите флажки в разделе **6**. Оба флажка соответствуют двум псевдонимам дигипитеров, которые прослушивает устройство — по умолчанию это `WIDE1` и `WIDE2`. При приеме пакета и обнаружении этих значений в пути, радиостанция передаст если того требует принятиый пакет обратно в радиоэфир.
 
-The `delay` field introduces a delay before digipeating a heard packet.
+Поле `Delay` вводит задержку перед обратной отправкой принятогно пакета.
 
-The six-digit code in Section **7** is related to enabling and disabling digipeating remotely. According to the official manual, the device listens for "a beacon" containing a message in the form of "\<code\>\<command\>" where "command" is one of `A0`,`B0`,`A1`,`B1` and `R0`.
+### Настройки Bluetooth
 
-* `A` commands control the alias marked `DIGI 1` while `B` commands control `DIGI 2`
-* `1` turns the alias on, while `0` turns it off.
-* `R0` command resets the state to the one stored in the EEPROM
+Модуль Bluetooth устройства всегда доступен для обнаружения, если он не подключен. *Предполагается*, что имя должно быть установлено на `<позывной>-<ssid>` при включении питания, но иногда это не так, из-за того, что последовательный интерфейс путается из-за разрывов строк. Пин-код по умолчанию для сопряжения — «1234».
 
-Further experimentation is required to ascertain whether this remote control does, in fact, work. I have not managed to invoke it by sending messages into the device from the BT side, so it might only work over the air, if at all.
+Настройки, управляющие поведением Bluetooth, находятся в разделе **10**:
 
-Which is a shame, because the ability to enable and disable digipeating in the field would be handy.
+* Безымянный флажок включает и отключает модуль Bluetooth, так что вы можете просто подключить свое устройство к USB и иметь USB-Serial TNC вообще без Bluetooth, если хотите.
+* `Out1` выбирает поведение основного потока:
+  * `OFF` просто отключает все, что, вероятно, не то, что вам нужно, даже если вы полностью отключите Bluetooth.
+  * `KISS Hex` представляет собой правильный интерфейс KISS TNC.
+  * `UI` представляет собой более понятный для человека интерфейс, в котором содержимое полученных и переданных пакетов печатается по одному в строке, а иногда появляются информационные сообщения. Это параметр, который вам нужен, когда вы настраиваете радио или иным образом возитесь с устройством. Что очень странно, так это то, что APRSDroid продолжает нормально работать, когда устройство находится в этом режиме, и мне не совсем понятно, почему — предположительно, устройство распознает KISS-трафик, когда получает его, но почему APRSDroid принимает однопакетный построчные сообщения, когда он настроен для KISS TNC?
+  * `GPWPL` заменяет вывод передаваемых маяков предложениями NMEA «Waypoint Location». Полученные маяки, кажется, вообще не появляются. Предположительно, вы можете использовать это в сочетании с каким-либо навигатором для рендеринга карт.
+  * `KISS Asc` передает и, предположительно, ожидает входящие пакеты, как если бы они были фреймами KISS, но переводит их в шестнадцатеричное представление ASCII. То есть вместо отправки 0xC0 он отправляет `C0` и т. д. 
+* `Out2` - это поведение вторичного потока -- вместо того, чтобы представлять отдельный поток, как это подразумевается в руководстве. Как это работает не понятно!
+  * `GPS` выгружает необработанный вывод GPS NMEA в том виде, в котором он получен от GPS, в поток. Радиостанция может быть использована как внешний GPS-приемник.
+  * `Rotator` — самая малоизвестная функция устройства. Согласно оригинальному руководству, устройство способно управлять поворотным устройством антенны Yaesu через интерфейс GS-232B, чтобы наводить маяки по мере их слышимости. Он, безусловно, *пытается* -- в режиме `UI` вы можете иногда видеть вывод, относящийся к этой функции, описывающий расчеты относительных положений, приводящие к азимуту антенны. Однако мне совершенно неясно, как данные попадут на сам ротатор.
 
-### Bluetooth settings
+### Настройка радиостанции
 
-While I say "Bluetooth," it appears that internally, the device has only one input-output stream, which is shared between Bluetooth SPP and the USB serial port. It is shared so much, that if you connect to it over Bluetooth, you can use my `x1c3tool` program to save and load configuration this way, so an Android application to manipulate the settings in the field is not out of the realm of possibility -- it just would take more spare time to write than I currently have.
+Раздел **8** содержит раскрывающиеся списки, которые контролируют уровни громкости для аудио RX и TX, а также две кнопки для передачи сигналов.
 
-The device's Bluetooth module is always discoverable unless connected. The name is *supposed* to be set to `<callsign>-<ssid>` on power on, but sometimes isn't, because of the way the serial interface gets confused about linebreaks. The default pin code for pairing is `1234`.
+По моему опыту, устройству было очень трудно декодировать пакеты, пока я не установил уровень RX на -9,0 дБ. Вы можете поиграть с вашим радио и этими уровнями громкости для достижения наилучших результатов.
 
-The settings that control Bluetooth behavior are in Section **10**:
+### Другие настройки
 
-* The unnamed checkbox enables and disables the Bluetooth module, so you can just plug your device into USB and have an USB-Serial TNC without Bluetooth at all, if you like.
-* `Out1` dropdown selects the primary stream behavior:
-  * `OFF` just disables everything, which is probably not something you want even if you disable Bluetooth entirely.
-  * `KISS Hex` presents a proper KISS TNC interface.
-  * `UI` presents a more human-readable interface, where received and transmitted packet contents are printed one per line, and occasional informative messages appear. This is the setting you want while you're tuning your radio and otherwise fiddling with the device. What's very strange is that APRSDroid actually keeps working fine when the device is in this mode, and I'm not entirely clear why -- presumably, the device recognizes KISS traffic when it receives it, but why does APRSDroid accept the one-packet-per-line messages, when it's configured for a KISS TNC?
-  * `GPWPL` replaces output of transmitted beacons with NMEA "Waypoint Location" sentences. Received beacons seem not to appear at all. Presumably, you can use this in conjunction with some kind of navigator device for rendering the map, but the specific use case eludes me, since incoming APRS packets aren't getting parsed into GPWPL sentences as far as I can tell.
-  * `KISS Asc` prints -- and presumably, expects -- incoming packets as if they were KISS frames, but translates them into a hexadecimal ASCII representation. That is, instead of sending 0xC0, it sends `C0`, etc. The use case eludes me and nothing else seems to work with this format.
-* `Out2` is the secondary stream behavior -- rather than present a separate stream as the manual wants to imply, (where would it even do that?) it appears to intermix extra data into the same one.
-  * `GPS` dumps raw GPS NMEA output the way it is received from the GPS into the stream. The intention, presumably, is to have an option to take over the beaconing functions of the device from the PC side without having an extra GPS in the system, though it would require some creative fiddling with the serial port to do.
-  * `Rotator` is the most obscure function of the device. According to the original manual, the device is capable of controlling a Yaesu antenna rotator through the GS-232B interface to point at the beacons as they are heard. It certainly *tries* to -- in the `UI` mode, you can occasionally see output pertaining to that function, describing calculations of the relative positions resulting in an antenna azimuth. However, it's entirely unclear to me how would the data get to the rotator itself, or why this is done for directly received packets but not digipeated packets. Current versions of the setup tool are missing a bunch of buttons related to this function, so this might be specific only to certain versions of the device.
+* `No Rx Power OFF` в разделе **9** выключит устройство по истечении указанного времени с момента последнего полученного и проанализированного пакета.
+* `UTC TimeZone` в разделе **11** сохраняется в EEPROM, но я понятия не имею, используется ли он вообще где-либо.
 
-### Radio adjustment
+### AT команды
 
-Section **8** contains dropdowns which control volume levels for RX and TX audio, as well as two buttons for transmitting test signals.
+Хотя в оригинальном руководстве подразумевается, что некоторые AT-команды через последовательный интерфейс позволят вам изменить конфигурацию таким образом, вряд ли какие-либо из них работают. Вот все команды, которые я смог проверить как работающие:
 
-In my experience, the device had a really hard time decoding packets until I set the RX level at -9.0dB. You want to fiddle with your particular radio and these volume levels for best results.
+* `AT+VER=?` сообщает версию устройства.
+* `AT+DEMO=ON` приводит к сбросу настроек.
+* `AT+LC=CLEAN` очищает счетчик пробега.
+* `AT+SET=READ` выгружает EEPROM обратно в поток, предварительно ожидая 5-байтового заголовка, который читается как `HELLO` по *некоторой* причине.
+* `AT+SET=WRITE<eeprom>` записывает EEPROM обратно. Сохраняемый и загружаемый EEPROM имеет размер ровно 512 байт.
+* «AT+TX=ON» эквивалентно нажатию кнопки «TX» и вызывает отправку маяка.
+* `AT+TONE=1200`, `AT+TONE=2200` и `AT+TONE=OFF` определяют, как кнопки `TX 1200`, `TX 2200` и `TX OFF` управляют устройством.
 
-`TX 1200` and `TX 2200` buttons will transmit a 1200Hz and a 2200Hz tone, respectively, to aid you in tuning. `TX OFF` button will stop the transmission.
+Ожидается, что команды, за исключением `AT+SET=WRITE`, завершатся с помощью CRLF.
 
-### Other stuff
+дна конкретная команда, которую я нашел, работает только при подключении к интерфейсу Bluetooth SPP: `AT+NAME<name>` устанавливает имя Bluetooth устройства. Этим занимается сам модуль Bluetooth. Иногда ЦП пытается переписать имя Bluetooth с искаженными результатами, поскольку он забывает завершать строку CRLF. В моем конкретном устройстве используется модуль Bluetooth [HC-02] (http://www.hc01.com/products/8), и, согласно техническому описанию производителя, он также должен поддерживать `AT+PIN<4-значный PIN-код. code>` и несколько других AT-команд, которые кажутся менее полезными. Однако я не проверял, сбрасывает ли устройство PIN-код в модуле Bluetooth, как это происходит с именем Bluetooth.
 
-* The `No Rx Power OFF` dropdown in Section **9** will turn the device off after the specified time elapses since the last received and parsed packet.
-* `UTC time zone` dropdown in Section **11** gets saved to EEPROM, but I have no idea whatsoever whether it's actually used anywhere.
-* The function of `Rx Analytic` in Section **12** is a complete mystery, but it, too, is saved to the EEPROM.
-
-### AT commands
-
-While the original manual implies some AT commands over the serial interface would allow you to change configuration this way, hardly any of them work. Here are all the commands that I've been able to verify as working:
-
-* `AT+VER=?` reports device version.
-* `AT+DEMO=ON` results in factory reset.
-* `AT+LC=CLEAN` clears mileage counter.
-* `AT+SET=READ` dumps the EEPROM back into the stream, pre-pending a 5-byte header that reads `HELLO` for *some* reason.
-* `AT+SET=WRITE<eeprom>` writes the EEPROM back. The EEPROM being saved and loaded is exactly 512 bytes.
-* `AT+TX=ON` is equivalent to clicking the `TX` button and forces a beacon to be sent.
-* `AT+TONE=1200`, `AT+TONE=2200` and `AT+TONE=OFF` are the way the `TX 1200`, `TX 2200` and `TX OFF` buttons control the device.
-
-Commands, with the exception of `AT+SET=WRITE`, are expected to terminate with CRLF.
-
-One particular command I've found only works when connected to the Bluetooth SPP interface: `AT+NAME<name>` sets the Bluetooth name of the device. This is handled by the Bluetooth module itself. Occasionally, the CPU tries to rewrite the Bluetooth name, with mangled results, since it forgets to CRLF-terminate the string. The Bluetooth module used in my particular device is [HC-02](http://www.hc01.com/products/8), and according to the manufacturer's datasheet, it should also support `AT+PIN<4-digit pin code>`, and a few other AT commands that appear less useful. I have not verified whether the device resets the PIN code in the Bluetooth module, however, like it does with the Bluetooth name.
-
-Sometimes, you can see the device send `AT+KISS=OFF` and `AT+KISS=ON` into the serial port when restarting. When trying to send those, both actually respond with `OK`, but it's not clear whether anything actually happens as a result.
-
-**P.S.** Oh, and if you're up to buying a cheap HT for use with this, I recommend a Quansheng UV-R50-2, rather than the ubiquitous Baofeng UV-5R: it's only a little more expensive, but has actual filters.
+Иногда вы можете увидеть, как устройство отправляет `AT+KISS=OFF` и `AT+KISS=ON` в последовательный порт при перезапуске. При попытке отправить их оба фактически отвечают «ОК», но неясно, происходит ли что-нибудь в результате.
 
 [APRS]: http://www.aprs.org/doc/APRS101.PDF
 [MIC-E]: https://www.marcelpost.com/wiki/index.php/MIC-E

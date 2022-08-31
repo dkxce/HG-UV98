@@ -3,6 +3,7 @@
 [ORIGINAL HERE](https://github.com/Mihara/x1c3tool/blob/163a2c89a89dfa66d6e813860f687fe8251821e6/manual/manual.md) |
 [РУССКИЙ](Russian.md) | [ENGLISH](Readme.md)
 
+![APRS SOFT](APRS-SETUP-HOWTO.jpg)      
 ![X1C3 setup tool](setup-marked.png)
 
 ### Connecting to the device

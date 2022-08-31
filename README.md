@@ -19,7 +19,7 @@ English Manual
 Software
  * [Channels Edit, APRS, Drivers, Android, Serial](Software)
  * [AGWBridge (work over Bluetooth)](https://github.com/dkxce/AGWBridge)
- * [KISSTNSLanch (work over Bluetooth)](https://github.com/dkxce/KISSTNCLanchHG-UV98)
+ * [KISSTNCLanch (work over Bluetooth)](https://github.com/dkxce/KISSTNCLanchHG-UV98)
  * [APRSWin (APRS, KISS TNC)](https://github.com/dkxce/APRSWin)
  * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
  

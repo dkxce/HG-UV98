@@ -20,26 +20,28 @@
 
 ### Beaconing
 
-Section **2** sets the callsign and the APRS SSID the device identifies itself as on the air, but this only affects the beacons it generates. When used as a TNC, no changes to the packets coming in will be applied. Native beaconing and sending packets over the TNC interface smoothly coexist, which makes it practical to keep the device beaconing on its own while occasionally connecting to the Bluetooth TNC with APRSDroid to send and receive messages.
+В разделе **2** задается позывной и SSID, с которым устройство идентифицирует себя в эфире. При использовании в режиме прослушивания эфира никакие изменения не требуются. Данные устройства задаются, чтобы устройство самостоятельно работало в режиме Beaconing.
 
-Section **3** primarily deals with beaconing rules:
+Раздел **3** в первую очередь касается правил отправки данных для Beaconing:
 
-* `GPS ON` checkbox enables and disables the builtin GPS receiver. You can disable this checkbox, switch to `SPORT` mode, and the device will not beacon by itself, because GPS is off.
-* `Site` is the deceptively named dropdown that selects whether the device is meant to be moving or stationary:
-  * `FIXED` selects the stationary mode. Coordinates sent over the air will be taken from the fields in Section **4**. The fields are sent out verbatim, so you are expected to write them as they are described on page 23 of the [APRS protocol specification][APRS], with the N/E/S/W written into separate fields.
+* `GPS ON` включает и отключает встроенный GPS-приемник. Вы можете отключить этот флажок, переключиться в режим `SPORT`, и устройство не будет само подавать сигнал, потому что GPS выключен.
+* `Site` — это раскрывающийся список с обманчивым названием, который выбирает, должно ли устройство двигаться или работает стационарно:
+  * `FIXED` - стационарный режим. Координаты для отправки берутся из полей раздела **4**. Значения отправляются как есть, поэтому необходимо написать их так, как они описаны в спецификации протокола APRS с указанием N/E/S/W в отдельных полях.
+  * 
+    Установив `Site` на `FIXED`, отключив все флажки в разделе **3** и установив `Smart` в раскрывающемся списке `OFF`, вы получите чистый Bluetooth TNC режим, который не передает ничего.
+    
+  * `SPORT` - режим движения. В режиме `SPORT` для отправки координат маяка используются координаты с GPS-приемника. Режим отправки зависит от состояния других флажков и полей в Разделе **3**.
 
-    By setting `Site` to `FIXED`, disabling all the checkboxes in Section **3** and setting `Smart` dropdown to `OFF` you get a pure Bluetooth TNC that does not transmit anything that didn't come in via KISS.
-  * `SPORT` selects the moving mode. In `SPORT` mode, the GPS data is used for beaconing. The circumstances which cause beacons to be sent out depend on the state of the other checkboxes and fields in Section **3**.
-
-    No beacons will be sent out *at all* until the device has a GPS fix. The stock manual repeats this multiple times just to make sure this doesn't trip you up.
-  * `WS` mode is not documented, and appears to behave identically to the `FIXED` mode. I have no clue what it's supposed to do and careful investigation of the manuals for related devices didn't clue me in either.
-* `Smart` dropdown is either `OFF` or enables [smart beaconing](http://www.hamhud.net/hh2/smartbeacon.html) based on motion patterns using one of the predefined sets of constants. According to the manual *for X1C5*, which is indeed a closely related device, these mean the following:
-
-  * `1` - Car mode. Base interval is 20 seconds.
-  * `2` - Bicycle mode. Base interval is 40 seconds.
-  * `3` - Walking mode. Base interval 60 seconds.
-  * `4` - Slow walking mode, like mountain climbing. Base interval is 90 seconds
-  * `5` - Nearly stationary mode. Base interval is 120 seconds.
+    В данно режиме никакие пакеты не будут отправляться, пока устройство не установит определит GPS координаты по спутникам.
+    
+  * Режим `WS` не задокументирован.
+  
+* Раскрывающийся список `Smart` либо отключен, либо включает [интеллектуальный режим](http://www.hamhud.net/hh2/smartbeacon.html) на основе шаблонов движения с использованием одного из предопределенных алгоритмов. Согласно руководству *для X1C5* это означает следующее:
+  * `1` - Автомобиль. Интервал оправки координат - 20 сек.
+  * `2` - Велосипед. Интервал оправки координат - 40 сек.
+  * `3` - Пешеход. Интервал оправки координат - 60 сек.
+  * `4` - Черепаха (скалолазание). Интервал оправки координат - 90 сек.
+  * `5` - Околостационарный режим. Интервал оправки координат - 120 сек.
 
   Yes, I had to go fish for the manuals to the other related devices to find that important tidbit.
 * `Manual` checkbox makes the device send out a beacon once the PTT is *released* on the microphone that is plugged into the device itself, i.e. immediately once you finish talking. Being an external device, X1C3 can't change the frequency to do it, so this is generally only suitable for using in situations where you have a repeater that handles reception of APRS packets on its own frequency, i.e. [what MIC-E data format was originally intended for][MIC-E]. However, you might want to rig up a button just for the convenience of being able to beacon on command without doing something more complicated.

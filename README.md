@@ -12,9 +12,11 @@ The official documentation can be found below:
 
 Русская документация (инструкция Lanchonlh HG-UV98)
  * [Инструкция](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual)
+ * [APRS Software](https://github.com/dkxce/HG-UV98/blob/master/Software/20200822%20Manual/Russian.md)
 
 English Manual
  * [Manual](https://github.com/dkxce/lanchonlh_hg-uv98_ru_manual/tree/main/English)
+ * [APRS Software](https://github.com/dkxce/HG-UV98/tree/master/Software/20200822%20Manual)
 
 Software
  * [Channels Edit, APRS, Drivers, Android, Serial](Software)

@@ -8,6 +8,8 @@
 
 ### Connecting to the device
 
+Turn on radio with pressed side key PF1. The `APRS UpData...` screen will appears. Then you can connect to the radio with APRS software.
+
 Identify the section marked **0** on the picture of the setup tool UI and switch the user interface to English before you proceed. Unfortunately you will need to do that every time you start the setup tool.
 
 Section **1** controls the connection to the device. `Serial` will refresh the list of the serial ports, allowing you to select the correct one from the dropdown. `Open/Close` will open and close the port, `Read` and `Write` will read the configuration from the device and write it back, respectively. `Reset` will issue an AT command that resets the configuration to factory defaults, which takes effect immediately and overwrites the config in the EEPROM.

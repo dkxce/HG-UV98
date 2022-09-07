@@ -12,41 +12,40 @@
     </p>
     <img src="javAPRSSrvrIGate_Settings.jpg" alt="Settings" style="height: 492px; width: 268px" />
     <ul >
-        <li style="margin-top:10px">*<strong>Callsign:</strong> Enter your licensed amateur radio callsign.</li>
-        <li style="margin-top:10px">*<strong>Passcode:</strong> Enter your APRS-IS passcode. javAPRSSrvr IGate requires that you be a licensed amateur radio operator.<br />
-            If you do not have an APRS-IS passcode, you may email me directly with your Google Play email address, your licensed amateur radio callsign, your full name and mailing address.</li>
-        <li style="margin-top:10px">*<strong>Server SSID:</strong> Enter a one or 2 alphanumeric SSID for the server. This defaults to IG and is used to identify the server to APRS-IS. <strong>Must be unique.</strong></li>
-        <li style="margin-top:10px">*<strong>IGate SSID:</strong> Enter a number from 1 to 15 or change to blank for zero. The default is 10. This is used to identify the IGate to RF users and to APRS-IS. <strong>Must be unique.</strong></li>
-        <li style="margin-top:10px"><strong>Local Client SSID (0=noSSID):</strong> This is the SSID of the local APRS client you are connecting to javAPRSSrvr IGate. If the local client does not have a SSID, enter 0. The default is empty to indicate no local client is attached. <strong>Must be unique.</strong></li>
-        <li style="margin-top:10px">*<strong>IGate Path:</strong> This is the path used on RF. Default is WIDE1-1,WIDE2-1.</li>
-        <li style="margin-top:10px"><strong>APRS-IS Server:</strong> This is the address and port of the upstream server. The following formats are allowed:
+        <li style="margin-top:10px">*<strong>Callsign:</strong> Ваш радиолюбительский позывной.</li>
+        <li style="margin-top:10px">*<strong>Passcode:</strong> Ваш пароль для позывного APRS-IS. Для javAPRSSrvr IGate требуется, чтобы вы были лицензированным радиолюбителем и имели соответствующий пароль для позывного. Пароль можно получить <a href="https://apps.magicbug.co.uk/passcode/">здесь</a>, <a href="http://n5dux.com/ham/aprs-passcode/">здесь</a>, <a href="https://aprs.do3sww.de/">здесь</a>, <a href="https://www.pb1sam.be/passcode/">здесь</a>, <a href="https://www.iz3mez.it/aprs-passcode/">здесь</a>, <a href="https://callpass.kf5jwc.us/">здесь</a>, <a href="https://www.george-smart.co.uk/aprs/aprs_callpass/">здесь</a>, а еще <a href="http://doppelklix.de/wordpress/wp-includes/APRS-Passcode/index.php">тут</a> или <a href="http://rk1at.ru/aprs/">тут</a>. Либо можете воспользоваться <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/dkxce/APRSCodeGen/main/APRSCodeGen.html">генаратором</a> из <a href="https://github.com/dkxce/APRSCodeGen">моей утилиты</a>.</li>
+        <li style="margin-top:10px">*<strong>Server SSID:</strong> Цифробуквенное обозначение SSID из одного или двух симовлов для именования сервера. По умолчанию: IG, используется для идентификации сервера (приложения) в интернет APRS-сети. <strong>Значение должно быть уникально.</strong></li>
+        <li style="margin-top:10px">*<strong>IGate SSID:</strong> Число от 1 до 15, либо 0 если отсутствует. По умолчанию: 10. Используется для идентификации IGate (приложения) для APRS радиостанций в радиоэфире. <strong>Значение должно быть уникально.</strong></li>
+        <li style="margin-top:10px"><strong>Local Client SSID (0=noSSID):</strong> SSID локального APRS клиента для подключения к javAPRSSrvr IGate серверу. Если локальный клиент не имеет SSID, введите 0. По умолчанию пусто. <strong>Значение должно быть уникально.</strong></li>
+        <li style="margin-top:10px">*<strong>IGate Path:</strong> Путь дигипитеров при передачи сообщений в радиоэфир. По умолчанию: WIDE1-1,WIDE2-1.</li>
+        <li style="margin-top:10px"><strong>APRS-IS Server:</strong> Адрес и порт (строка подключения) для внешнего APRS-IS сервера. Допустимые форматы строки:
             <ul>
-                <li><strong>WebSocket (not all APRS-IS servers support this):</strong> ws://server[:port]/ or wss://server[:port]/ (wss=secure)</li>
+                <li><strong>WebSocket (не все серверы APRS-IS поддерживают этот режим):</strong> ws://server[:port]/ или wss://server[:port]/ (wss=secure)</li>
                 <li><strong>TCP:</strong> server:port</li>
             </ul>
-            Default is ws://srvr.aprs-is.net:8080/</li>
+            По умолчанию: ws://srvr.aprs-is.net:8080/</li>
         <li style="margin-top:10px">
-            <strong>Filter Command:</strong> This is used to tell the upstream server what filter to use.<br />
-            I recommend f/IGATE-SSID/50 where IGATE-SSID is the your callsign and IGate SSID to provide all stations within 50 km of your location. Do <strong>NOT</strong> use the server SSID as the server never transmits a position; only the IGate transmits a position.<br />
-            More filter commands can be found at <a href="http://www.aprs-is.net/javAPRSFilter.aspx">APRS Filter Commands</a>
+            <strong>Filter Command:</strong> Фильтр для внешнего APRS-IS сервера для фильтрации входящих пакетов.<br />
+            Рекомендуется использовать `friend range` фильтр <b>f/IGATE-SSID/50</b>, где <b>IGATE-SSID</b> ваш позывной и IGate SSID для отображения всех станций в 50 км радиусе от вашего местоположения. <strong>Не</strong> используйте Server SSID т.к. сервер не отправляет пакеты координат от своего имени; только IGate передает координаты.<br />
+            Подробнее о фильтрах можно ознакомиться <a href="http://www.aprs-is.net/javAPRSFilter.aspx">в мануале</a>.
         </li>
-        <li style="margin-top:10px">*<strong>Bluetooth TNC:</strong> This is the Bluetooth KISS TNC you will be using (connected HG-UV98). The TNC must already be paired and placed into KISS mode before starting javAPRSSrvr IGate.</li>
+        <li style="margin-top:10px">*<strong>Bluetooth TNC:</strong> Наименование Bluetooth KISS TNC подключения (для HG-UV98). Устройство TNC должно быть подключено и находиться в режиме KISS перед запуском javAPRSSrvr IGate.</li>
     </ul>
     <p>
-        * indicates Required.
+        * обязательно к заполнению.
     </p>
-    <h2>Button Operation</h2>
+    <h2>Назначения кнопок</h2>
     <p>
-        There are 2 buttons that are very important to the operation of javAPRSSrvr IGate.</p>
+        Всего в интерфейсе программы 2 кнопки.</p>
     <ul>
-        <li><strong>Start</strong><br />This buttons starts the IGate process.</li>
-        <li><strong>Shutdown</strong><br />This button shuts javAPRSSrvr IGate down completely. This frees up all resources immediately. It does prompt before closing to ensure no accidental touches.</li>
+        <li><strong>Start</strong><br />Запускает IGate сервер (начинает обмен пакетами).</li>
+        <li><strong>Shutdown</strong><br />Остан6авливает IGate сервер (заканчивает обмен пакетами).</li>
     </ul>
-    <h2>Connecting an UI App to javAPRSSrvr IGate</h2>
+    <h2>Подключение Android-приложений к javAPRSSrvr IGate</h2>
     <p>
-        Because javAPRSSrvr IGate is based on javAPRSSrvr, it provides APRS-IS server ports for localhost attachment. It is limited to localhost to protect you from outside connections.
-        javAPRSSrvr IGate supports two ports, 10152 which is a full feed of every non-dupe packet that passes through it and 14580 which is a user-defined filter port.
-    You can configure your UI client (such as <a href="https://aprsdroid.org/">APRSDroid</a> or <a href="https://www.oruxmaps.com/cs/en/">OruxMaps</a> to connect to either port. If you wish to connect to port 14580, please see <a href="http://www.aprs-is.net/javAPRSFilter.aspx">APRS Filter Commands</a> for information on filters you can use.</br></br>
-    Connection string for application: <b>localhost:14580</b> or <i>localhost:10152</i>
+        javAPRSSrvr IGate предоставляет локальные TCP порты для сторонних подключений. Подключиться можно только локально (т.е. с другого устройства подключиться не получится!).
+        javAPRSSrvr IGate предоставляет два порта. Порт 10152 - без фильтра пакетов и 14580 - с фильтром пакетов.
+    Вы можете подключить любое Android приложение (например: <a href="https://aprsdroid.org/">APRSDroid</a> или <a href="https://www.oruxmaps.com/cs/en/">OruxMaps</a> на любой из этих портов. При подключении к порту 14580, изучите мануал по <a href="http://www.aprs-is.net/javAPRSFilter.aspx">фильтрам</a> чтобы выбрать требуемые и настроить их в приложении.</br></br>
+    Строка подключений для Android приложений: <b>localhost:14580</b> или <b>localhost:10152</b>
     </p>
     <h3>javAPRSSrvr IGate is GA released at the <a href="https://play.google.com/store/apps/details?id=net.ae5pl.javaprssrvrigate">Google Play Store</a>.</h3>

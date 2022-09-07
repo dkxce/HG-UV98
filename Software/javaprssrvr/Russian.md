@@ -26,7 +26,7 @@
             По умолчанию: ws://srvr.aprs-is.net:8080/</li>
         <li style="margin-top:10px">
             <strong>Filter Command:</strong> Фильтр для внешнего APRS-IS сервера для фильтрации входящих пакетов.<br />
-            Рекомендуется использовать `friend range` фильтр <b>f/IGATE-SSID/50</b>, где <b>IGATE-SSID</b> ваш позывной и IGate SSID для отображения всех станций в 50 км радиусе от вашего местоположения. <strong>Не</strong> используйте Server SSID т.к. сервер не отправляет пакеты координат от своего имени; только IGate передает координаты. <br /> Я предпочитаю для себя (UB3APB) такой набор фильтров: <i>r/55.00/37.00/50 b/DKXCE* g/DKXCE* f/DKXCE/50 f/DKXCE-8/50 me/50</i>, где <i>DKXCE-8</i> - ваш позывной и IGate SSID.<br />
+            Рекомендуется использовать `friend range` фильтр <b>f/IGATE-SSID/50</b>, где <b>IGATE-SSID</b> ваш позывной и IGate SSID для отображения всех станций в 50 км радиусе от вашего местоположения. <strong>Не</strong> используйте Server SSID т.к. сервер не отправляет пакеты координат от своего имени; только IGate передает координаты. <br /> Я предпочитаю для себя такой набор фильтров: <i>r/55.00/37.00/50 b/DKXCE* g/DKXCE* f/DKXCE/50 f/DKXCE-8/50 me/50</i>, где <i>DKXCE-8</i> - ваш позывной и IGate SSID.<br />
             Подробнее о фильтрах можно ознакомиться <a href="http://www.aprs-is.net/javAPRSFilter.aspx">в мануале</a>.
         </li>
         <li style="margin-top:10px">*<strong>Bluetooth TNC:</strong> Наименование Bluetooth KISS TNC подключения (для HG-UV98). Устройство TNC должно быть подключено и находиться в режиме KISS перед запуском javAPRSSrvr IGate.</li>

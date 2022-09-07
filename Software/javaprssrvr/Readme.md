@@ -47,6 +47,6 @@
     <p>
         Because javAPRSSrvr IGate is based on javAPRSSrvr, it provides APRS-IS server ports for localhost attachment. It is limited to localhost to protect you from outside connections.
         javAPRSSrvr IGate supports two ports, 10152 which is a full feed of every non-dupe packet that passes through it and 14580 which is a user-defined filter port.
-        You can configure your UI client (such as [APRSDroid](https://aprsdroid.org/) or [OruxMaps](https://www.oruxmaps.com/cs/en/) to connect to either port. If you wish to connect to port 14580, please see <a href="http://www.aprs-is.net/javAPRSFilter.aspx">APRS Filter Commands</a> for information on filters you can use.
+    You can configure your UI client (such as <a href="https://aprsdroid.org/">APRSDroid</a> or <a href="https://www.oruxmaps.com/cs/en/">OruxMaps</a> to connect to either port. If you wish to connect to port 14580, please see <a href="http://www.aprs-is.net/javAPRSFilter.aspx">APRS Filter Commands</a> for information on filters you can use.
     </p>
     <h3>javAPRSSrvr IGate is GA released at the <a href="https://play.google.com/store/apps/details?id=net.ae5pl.javaprssrvrigate">Google Play Store</a>.</h3>

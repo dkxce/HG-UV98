@@ -2,7 +2,7 @@
 
 [original here](http://www.ae5pl.net/javAPRSSrvrIGate.aspx) | [русский](Russian.md) | [english](Readme.md)    
 
-**javAPRSSrvr** IGate это <a href="https://play.google.com/store/apps/details?id=net.ae5pl.javaprssrvrigate">приложение под Android</a> предназначенное для запуска APRS IGate сервера на устройстве Android под управлением операционной системы Oreo (8.0) или более поздней версии.
+**javAPRSSrvr IGate** это <a href="https://play.google.com/store/apps/details?id=net.ae5pl.javaprssrvrigate">приложение под Android</a> предназначенное для запуска APRS IGate сервера на устройстве Android под управлением операционной системы Oreo (8.0) или более поздней версии.
     Приложения на смартфоне (например, APRSDroid) могут подключаться к javAPRSSrvr IGate как к локальному APRS-IS серверу, достаточно только изменить строку подключения.
         javAPRSSrvr описан <a href="http://www.aprs-is.net/javAPRSSrvr">здесь</a>.  Дополнительную информацию о APRS-IS можно найти <a href="http://www.aprs-is.net">тут</a>
 

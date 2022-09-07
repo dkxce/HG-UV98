@@ -20,8 +20,8 @@
         <li style="margin-top:10px">*<strong>IGate Path:</strong> Путь дигипитеров при передачи сообщений в радиоэфир. По умолчанию: WIDE1-1,WIDE2-1.</li>
         <li style="margin-top:10px"><strong>APRS-IS Server:</strong> Адрес и порт (строка подключения) для внешнего APRS-IS сервера. Допустимые форматы строки:
             <ul>
-                <li><strong>WebSocket (не все серверы APRS-IS поддерживают этот режим):</strong> ws://server[:port]/ или wss://server[:port]/ (wss=secure)</li>
-                <li><strong>TCP:</strong> server:port</li>
+                <li><strong>WebSocket</strong> (не все серверы APRS-IS поддерживают этот режим): ws://server[:port]/ или wss://server[:port]/ (wss=secure)</li>
+                <li><strong>TCP</strong>: server:port</li>
             </ul>
             По умолчанию: ws://srvr.aprs-is.net:8080/</li>
         <li style="margin-top:10px">

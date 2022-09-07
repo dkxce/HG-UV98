@@ -1,6 +1,6 @@
 ### javAPRSSrvr IGate
 
-[original here](http://www.ae5pl.net/javAPRSSrvrIGate.aspx)    
+[original here](http://www.ae5pl.net/javAPRSSrvrIGate.aspx) | [русский](Russian.md) | [english](Readme.md)    
 
 **javAPRSSrvr** IGate is an <a href="https://play.google.com/store/apps/details?id=net.ae5pl.javaprssrvrigate">Android app</a> designed to add APRS IGate functionality to an Android device running Oreo or later operating system.
     This app is <b>not</b> designed to be a hands-on app.  It is designed to run as a service and supports UI apps such as APRSDroid.

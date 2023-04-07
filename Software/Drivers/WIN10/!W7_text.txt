@@ -1,0 +1,59 @@
+Самый новый драйвер под Win7 не будет работать, т.к. шнурок у нас китайский и драйвер проверяет чип на оригинальность. Нужна старая версия драйвера. Спасибо товарищу с ником "San-ch" за найденное решение. Не работал драйвер v3.4.48.272, после установки и подключения шнурка ошибка "Запуск этого устройства невозможен. (Код 10)".
+
+Самое интересное, что прога определения чипа (шла в архиве с новым драйвером) после нормальной установки не ругается на чип и определяет его как PL-2303 XA / HXA". Вот и кому, спрашивается, пиндосы в итоге хуже сделали? Нам.. :(
+---
+http://forum.ixbt.com/topic.cgi?id=13:36329-23
+
+USB 2.0 To COM Device / Prolific USB-to-Serial Comm Port
+USB\VID_067B&PID_2303&REV_0300
+Win7 x64 (для x32 тоже работает)
+
+...
+Расскажу, что я перед этим делал. Сначала удалил все ранее установленные драйверы с помощью их программ установки и перезагрузил компьютер. Вставил девайс, он определился как в самом начале. Выбрал автоматическую установку драйверов, появился знакомый "код 10". Потом выбрал "ручную установку" —> "выбрать из установленных", и выбрал самую раннюю версию, 3.0.1.0. Потом появилось сообщение "драйвер установлен, требуется перезагрузка". Перезагрузил. Захожу в диспетчер устройств. ВНЕЗАПНО ВСЁ РАБОТАЕТ. Вот только номер порта был аж 27, поменял в настройках на COM2.
+
+
+ИНФА ДЛЯ ТЕХ, У КОГО PL2303 И КОД 10
+Опытным путём определил, что на Windows 7 x64 с версиями драйвера 3.3.2.105 (27.10.2008) и ниже всё работает нормально. Все версии с 3.3.5.122 (17.07.2009) до самой последней 3.4.42.258 (12.11.2012) выдают "ошибку код 10".
+
+Читая файл ReadMe, который идёт вместе с драйвером с оф. сайта, наткнулся на это:
+
+======================= 
+Counterfeit Warning!!! 
+======================= 
+Please be warned that counterfeit/fake PL-2303HX Chip Rev A (or PL-2303HXA) USB to Serial Controller ICs using Prolific's trademark logo, brandname, and device drivers, were being sold in the China market. Counterfeit IC products show exactly the same outside chip markings but generally are of poor quality and causes Windows driver compatibility issues (Yellow Mark Error Code 10 in Device Manager). We issue this warning to all our customers and consumers to avoid confusion and false purchase.
+
+Подозреваю, что в свежих версиях драйвера встроена защита от поддельных чипов, а в старых версиях эту фичу ещё не запилили, поэтому они нормально работают.
+
+Как вручную выбрать версию драйвера. Заходим в "Диспетчер устройств" —> "Порты COM и LTP" —> "Profilic USB-to-Serial Comm Port" —> "Свойства" —> "Драйвер" —> "Обновить" —> "вручную" —> "выбрать из уже установленных". Признаком успешной установки является отсутствие "кода 10" или других ошибок. Если нерабочая версия будет заменена на рабочую, то "код 10" и жёлтый треугольник исчезнут сразу, до перезагрузки.
+
+
+======================= ======================= ======================= ======================= ======================= ======================= ======================= 
+======================= ======================= ======================= ======================= ======================= ======================= ======================= 
+======================= ======================= ======================= ======================= ======================= ======================= ======================= 
+
+The newest driver under Win7 will not work. we have a Chinese cord and the driver checks the chip for originality. You need an older version of the driver.
+ The v3.4.48.272 driver did not work, after installing and connecting the cord, the error "This device cannot be started. (Code 10)".
+
+The most interesting thing is that the chip detection program (it was in the archive with the new driver) after a normal installation does not swear at the chip and defines it as PL-2303 XA / HXA. (
+
+USB 2.0 To COM Device / Prolific USB-to-Serial Comm Port
+USB\VID_067B&PID_2303&REV_0300
+Win7 x64 (works for x32 too)
+
+...
+Let me tell you what I did before. First uninstalled all previously installed drivers using their installers and restarted the computer. I inserted the device, it was defined as at the very beginning. I chose the automatic installation of drivers, the familiar "code 10" appeared. Then I chose "manual installation" -> "select from installed", and chose the earliest version, 3.0.1.0. Then the message "driver installed, restart required" appeared. Rebooted. I go to device manager. SUDDENLY EVERYTHING WORKS. That's just the port number was already 27, changed in the settings to COM2.
+
+
+INFA FOR THOSE WHO HAVE PL2303 AND CODE 10
+Empirically determined that on Windows 7 x64 with driver versions 3.3.2.105 (10/27/2008) and below, everything works fine. All versions from 3.3.5.122 (17.07.2009) to the latest 3.4.42.258 (12.11.2012) give "error code 10".
+
+Reading the ReadMe file that comes with the driver from. website, I came across this:
+
+========================
+Counterfeit Warning!!!
+========================
+Please be warned that counterfeit/fake PL-2303HX Chip Rev A (or PL-2303HXA) USB to Serial Controller ICs using Prolific's trademark logo, brandname, and device drivers, were being sold in the China market. Counterfeit IC products show exactly the same outside chip markings but generally are of poor quality and causes Windows driver compatibility issues (Yellow Mark Error Code 10 in Device Manager). We issue this warning to all our customers and consumers to avoid confusion and false purchases.
+
+I suspect that in the latest versions of the driver, protection against counterfeit chips is built in, and in older versions this feature has not yet been washed down, so they work fine.
+
+How to manually select the driver version. Go to "Device Manager" -> "COM and LTP Ports" -> "Profilic USB-to-Serial Comm Port" -> "Properties" -> "Driver" -> "Update" -> "manually" -> "select from those already installed. A sign of a successful installation is the absence of "code 10" or other errors. If the non-working version is replaced with a working one, then "code 10" and the yellow triangle will disappear immediately, before rebooting.

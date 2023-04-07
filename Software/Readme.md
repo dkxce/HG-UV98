@@ -22,6 +22,7 @@
 **RADIO FIRMWARES**:
 * v 1.0.1.190619: [rar](Lanchonlh%20HG-UV98%20radio%20firmware%20V1.0.1_190619-KT.rar), [zip](Lanchonlh%20HG-UV98%20radio%20firmware%20V1.0.1_190619-KT.zip)
 * v 1.1.0.211022: [rar](Lanchonlh%20HG-UV98%20radio%20firmware%20V1.1_211022.rar), [zip](Lanchonlh%20HG-UV98%20radio%20firmware%20V1.1_211022.zip)
+* v 1.2.0.211026: [rar](Lanchonlh%20HG-UV98%20Radio%20Firmware%20V1.2_211026.rar), [zip](Lanchonlh%20HG-UV98%20Radio%20Firmware%20V1.2_211026.zip)    
 
 **APRS FIRMWARES**:
 * v 2022-20-09 S3: [rar](Lanchonlh%20HG-UV98%20aprs%20firmware%20-%2020200923.rar), [zip](Lanchonlh%20HG-UV98%20aprs%20firmware%20-%2020200923.zip)

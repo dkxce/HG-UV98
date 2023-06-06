@@ -1,0 +1,12 @@
+[DEFAULT]
+BASEURL=http://www.pc6.com//softview/SoftView_65249.html
+[DOC#177]
+BASEURL=res://ieframe.dll/dnserrordiagoff_webOC.htm
+ORIGURL=http://4.down.jialichuang.com/960pc.html?6
+[InternetShortcut]
+URL=http://www.pc6.com//softview/SoftView_65249.html
+IDList=
+IconFile=http://www.pc6.com/favicon.ico
+IconIndex=1
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2

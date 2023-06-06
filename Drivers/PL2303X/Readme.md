@@ -18,7 +18,7 @@ PL2303-Prolific-DriverInstaller-v1.5.0.zip (3.4.25.218 [07.10.2011]).
 РАБОЧАЯ !!! РАБОЧАЯ !!! РАБОЧАЯ !!! РАБОЧАЯ !!!
 РАБОЧАЯ !!! РАБОЧАЯ !!! РАБОЧАЯ !!! РАБОЧАЯ !!!
 	
-	[NOTZIPPED/2007-02-12 v3.0.1.0](NOTZIPPED/2007-02-12 v3.0.1.02007-02-12 v3.0.1.0)
+	[NOTZIPPED/2007-02-12 v3.0.1.0](NOTZIPPED/2007-02-12 v3.0.1.0)
 
 см. [NonOriginalChipset.txt](NonOriginalChipset.txt)
 

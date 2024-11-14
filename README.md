@@ -26,7 +26,10 @@ Software
  * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
 
 Drivers     
- * [USB-UART](Drivers)     
+ * [USB-UART](Drivers)
+
+Firnware Sources   
+ * [hg-uv98-firmware](https://github.com/dkxce/hg-uv98-firmware)
  
 Alternative Repository:             
  * https://github.com/pwnj0hn/HG-UV98

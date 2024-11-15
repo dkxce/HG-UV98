@@ -28,7 +28,7 @@ Software
 Drivers     
  * [USB-UART](Drivers)
 
-Firnware Sources   
+Firmware Sources   
  * [APRS hg-uv98-firmware](https://github.com/dkxce/hg-uv98-firmware)
  
 Alternative Repository:             

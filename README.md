@@ -34,6 +34,9 @@ Firmware Sources
 Alternative Repository:             
  * https://github.com/pwnj0hn/HG-UV98
 
+Venus Storage:
+ * https://venus-itech.com/download/
+
 ### Bugs / Feature Requests
 
 We're using the [Github Issue Tracker](https://github.com/marrold/HG-UV98/issues) to track bugs and feature requests. Please add and update them as required, but please remember this is a community page, there's no guarantee the manufacturer will see / resolve them.

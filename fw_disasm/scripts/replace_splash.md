@@ -8,7 +8,7 @@
 
 ## Готовая сборка (exe)
 
-Рядом со скриптом лежит [собранная версия](dist\replace_splash.exe) **`dist\replace_splash.exe`**, которой можно пользоваться без установки Python и зависимостей:
+Рядом со скриптом лежит [собранная версия](dist/replace_splash.exe) **`dist\replace_splash.exe`**, которой можно пользоваться без установки Python и зависимостей:
 
 ```
 "dist\replace_splash.exe"            # интерактивное ASCII-меню (все операции)

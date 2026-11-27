@@ -25,6 +25,9 @@ Software
  * [APRSWin (APRS, KISS TNC)](https://github.com/dkxce/APRSWin)
  * [KMZViewer (APRS, KISS TNC)](https://github.com/dkxce/KMZViewer)
 
+Tools
+ * [Bootscreen Patcher](fw_disasm/scripts/replace_splash.en.md)
+
 Drivers     
  * [USB-UART](Drivers)
 

@@ -1,0 +1,394 @@
+# strings added in V1.2_211026 (148)
++  pG-
++  蝼簖 
++  鲼聱FH
++ &  No. Diam'd
++ '  Crash site
++ -0 db
++ -1.5 db
++ -10.5 db
++ -3.0 db
++ -4.5 db
++ -6.0 db
++ -7.5 db
++ -9.0 db
++ 01 APRS RX CH
++ 01 DATA OUTPUT A
++ 01 GPS POWER
++ 01.LOCAL SETUP
++ 02 APRS TX CH
++ 02 DATA OUTPUT B
++ 02 DIGI1 ON/OFF
++ 02 Position
++ 02.Fixed site
++ 03 DIGI1 NAME
++ 03 SYMBOL table
++ 03 TX Priority
++ 03 Time zone
++ 03.GPS SETUP
++ 03.GPS 设置
++ 04 Comment
++ 04 DIGI2 ON/OFF
++ 04 Data Analysis
++ 04 Speed unit
++ 04.BEACON SETUP
++ 05 DIGI2 NAME
++ 05 Distance unit
++ 05 SYMBOL
++ 05.BEACON MODE
++ 06 Altitude unit
++ 06 DIGI TX WAIT
++ 06 MIC-E ON/OFF
++ 06 MIC-E启用
++ 06 SFT_D
++ 06.DIGI SETUP
++ 07 MIC-E TYPE
++ 07 Mileage memory
++ 07 Remote password
++ 07 VOX_GRD
++ 07.Bluetooth
++ 07.Fixed latitude
++ 08 CH A MUTE
++ 08 PATH 1
++ 08.Advanced
++ 08.Fixed longitude
++ 09 CH B MUTE
++ 09 PATH 1 COUNT
++ 09 ROGER
++ 09.Fixed height
++ 09.Version
++ 1 PTT After
++ 1.Firmware Version
++ 10 CH_MDF
++ 10 PATH 2
++ 10.Mileage zero
++ 11 PATH 2 COUNT
++ 11.Meteorological
++ 12 TX_DCS
++ 12.Navigation
++ 13 List clean
++ 13 TX temp
++ 13 TX_CTC
++ 14 Navigation
++ 14 Pressure Report
++ 14 RX_DCS
++ 15 DIR_DISP_MODE
++ 15 RX_CTC
++ 15 TX pressure
++ 16 Factory setting
++ 16 TX mileage
++ 17 OFFSET
++ 18 LANGUAGE
++ 19 VOICE
++ 2 SMART MODE
++ 2.Hardware Version
++ 21 DIS_MODE
++ 22 ABR-LV
++ 26 VOX-DLY
++ 27 SC-REV
++ 28 LOCKMODE
++ 29 AUTOLOCK
++ 3 TIME MODE
++ 31 PF1-SHORT
++ 32 PF1-LONG
++ 33 PF2-SHORT
++ 34 PF2-LONG
++ 35 TOP-SHORT
++ 36 TOP-LONG
++ 37 MEM-CH
++ 38 DEL-CH
++ 39 RPT-RCT
++ 4 TIME INTERVAL
++ 40 V-BAT
++ 41 CT_SCN
++ 42 DCS_SCN
++ 43 SC_QT
++ 44 SCAN_ADD
++ 45 PRI_CH
++ 46 PRI_SCN
++ 47 AUTO_LOCK_DLY
++ 48 MENU_DLY
++ 49 BEACON_EIXT_DLY
++ 5 Queue MODE
++ 50 RESET
++ 6 Queue INTERVAL
++ 9  Petrol Stn
++ <  Motorcycle NT
++ =  Rail Eng. NU
++ ALARM_REMOTE
++ AUTO Increase
++ B  Snow blwng
++ BATTERY:
++ BpGm
++ C  Coast G'rd
++ CANCEL
++ DATE:
++ F  Fr'ze Rain
++ F  No Symbol
++ Fixed position
++ G  Snow Shwr 
++ GPS position
++ I  Rain Shwr
++ KEY+DIAL
++ NO DATA
++ NO DATA   
++ PATH1:
++ PATH2:
++ PATH3:
++ PATH4:
++ PATH5:
++ POWER AUTO ZERO
++ R  Rec Veh'le
++ SURE
++ V1.2_211026
++ ^  Plane lrge
++ b  Dust blwng 
++ h  HAM store
++ o  Circle sm
++ 貅晓KN0x
++ 貅￣5N0x
+
+# strings removed in V1.2_211026 (243)
+-  1 Call Sign
+-  1 Data A 
+-  1 Digi Band
+-  1 Firmware
+-  1 On/Off
+-  1 PTT Beacon
+-  1 RX Band
+-  1 Radio
+-  1 Screen Save
+-  2 Data B 
+-  2 Digi 1
+-  2 Format
+-  2 Hardware
+-  2 Location
+-  2 Power Save
+-  2 SSID
+-  2 Smart Beacon
+-  2 TX Band
+-  3 Auto Beacon
+-  3 BT Enable
+-  3 Digi 1 Path
+-  3 Freq Step
+-  3 GPS
+-  3 S/N
+-  3 Symbol Table
+-  3 TX Priority
+-  3 Time Zone
+-  4 Beacon Setup
+-  4 Comment
+-  4 Data C
+-  4 Digi 2
+-  4 Interval
+-  4 Modulation
+-  4 Speed Unit
+-  4 TX Delay
+-  5 Beacon Mode
+-  5 Digi 2 Path
+-  5 Distance Unit
+-  5 Queue Mode
+-  5 Symbol
+-  5 TX Level
+-  5 TX Power
+-  6 Altitude Unit
+-  6 Digipeater
+-  6 MIC-E
+-  6 MIC-E启用
+-  6 Queue Interval
+-  6 RX Level
+-  6 Repeat Delay
+-  6 Shift
+-  7 Bluetooth
+-  7 Fixed Latitude
+-  7 MIC-E Type
+-  7 Odometer
+-  7 Remote Password
+-  7 VOX
+-  8 APRS Advanced
+-  8 Band A Mute
+-  8 Fixed Longitude
+-  8 Path 1
+-  8 Squelch
+-  9 About
+-  9 Band B Mute
+-  9 Fixed Altitude
+-  9 Path 1 Hop
+-  9 Roger Beep
+-  pG 
+-  鲼嵇FH
+- &  No. Diamond
+- '  Crash Site
+- '  Plane Sm
+- -0 dB
+- -1.5 dB
+- -10.5 dB
+- -3.0 dB
+- -4.5 dB
+- -6.0 dB
+- -7.5 dB
+- -9.0 dB
+- 03 GPS 设置
+- 1.0.1_190619-KT
+- 10 Decode Beep
+- 10 Odometer
+- 10 Path 2
+- 10 V/M Mode
+- 1000 HZ
+- 11 Beacon Beep
+- 11 Memory Display
+- 11 Path 2 Hop
+- 11 WX Unit
+- 12 APRS Popup
+- 12 TX DCS
+- 13 Reset List
+- 13 TX CTCSS
+- 13 TX Temp
+- 14 Dynamic Position
+- 14 RX DCS
+- 14 TX Pressure
+- 1450 HZ
+- 15 Direction
+- 15 RX CTCSS
+- 15 TX Satellite
+- 16 APRS Reset
+- 16 Dual Band
+- 16 TX Odometer
+- 17 Rpt Offset
+- 1750 HZ
+- 18 Language
+- 19 Voice Assist
+- 20 System Beep
+- 21 Night Mode
+- 2100 HZ
+- 22 Back Light
+- 23 TX Busy
+- 24 Timeout Timer
+- 25 TOT Alarm
+- 26 VOX Delay
+- 27 Scan Resume
+- 28 Lock Mode
+- 29 Auto Lock
+- 30 Tone Call
+- 31 PF1 Short
+- 32 PF1 Long
+- 33 PF2 Short
+- 34 PF2 Long
+- 35 Top Short
+- 36 Top Long
+- 37 Mem Channel
+- 38 Mem Delete
+- 39 Rpt Roger
+- 40 Battery
+- 41 CTCSS Scan
+- 42 DCS Scan
+- 43 Code Save
+- 44 Scan Add
+- 45 Priority Ch
+- 46 Priority Scan
+- 47 Autolock Delay
+- 48 Menu Delay
+- 49 Beacon Msg Delay
+- 50 Radio Reset
+- 9  Gas Station
+- <  Motorcycle
+- =  Train Engine
+- Alert
+- Auto
+- B  Snow Blowing
+- BAT %d.%d V
+- Backlight
+- Band A
+- Band A/B
+- Band B
+- Battery:
+- Beacon
+- Begin
+- Both
+- Busy
+- C  Coast Guard
+- CALL 
+- Cancel
+- Celsius
+- Date:
+- Dual
+- Ext. Control
+- F  Freez. Rain
+- F  Tractor
+- G  Snow Shower
+- GMT +1
+- GMT +10
+- GMT +11
+- GMT +12
+- GMT +13
+- GMT +2
+- GMT +3
+- GMT +4
+- GMT +5
+- GMT +6
+- GMT +7
+- GMT +8
+- GMT +9
+- GMT -0
+- GMT -1
+- GMT -10
+- GMT -11
+- GMT -12
+- GMT -13
+- GMT -2
+- GMT -3
+- GMT -4
+- GMT -5
+- GMT -6
+- GMT -7
+- GMT -8
+- GMT -9
+- High
+- Hold
+- I  Rain Shower
+- I  TCP/IP
+- Inch
+- KISS ASCII
+- Keep
+- Key+Dial
+- Key+Dial+PTT
+- Knots
+- List
+- M0:Off Duty
+- Memory
+- Menu
+- Mile
+- NMEA
+- NUM+FREQ
+- NUMBER
+- No Data
+- No Data   
+- OK  
+- Path1:
+- Path2:
+- Path3:
+- Path4:
+- Path5:
+- R  RV
+- Remote Alert
+- Reset
+- Scan
+- Single
+- Squelch
+- Time
+- Time:
+- Torch
+- Type 1
+- Type 2
+- Type 3
+- Voice
+- Wind Speed
+- ]  Pac. BBS
+- ^  Plane Large
+- b  Dust Blowing
+- h  HAM Store
+- o  Circle Small
+- t(.(
+- 啉xh 
+- 貅〓5N0x
+- 貅威KN0x

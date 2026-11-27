@@ -1,0 +1,36 @@
+anchor,their_label,device_addr,kt_status,kt_function,v12_status,v12_function,v12_equivalent,note
+main,08029120,0802D120,inside function,0802D114,inside function,0802D10C,0802D10C,"present, shifted"
+hw_init,080290D0,0802D0D0,not code,,inside function,0802D0BC,0802D0BC,"present, shifted"
+hw_init/sub (GPIO+RF+USART1 init),08029080,0802D080,not code,,inside function,0802D064,0802D064,"present, shifted"
+ui_state_set(screen),08010530,08014530,exact function start,08014530,exact function start,08014530,08014530,"present, shifted"
+dual-pane redraw,08010CD4,08014CD4,exact function start,08014CD4,exact function start,08014CD4,08014CD4,"present, shifted"
+value clamp,0801715C,0801B15C,inside function,0801B140,inside function,0801B0A4,0801B0A4,"present, shifted"
+USART2 init,0801F810,08023810,inside function,080237F8,inside function,080237C4,080237C4,"present, shifted"
+USART2 RX ISR,0801F920,08023920,inside function,080238BC,inside function,08023908,08023908,"present, shifted"
+USART2 TX,0801FEAA,08023EAA,inside function,08023E92,inside function,08023908,08023908,"present, shifted"
+AT dispatcher,08010128,08014128,exact function start,08014128,exact function start,08014128,08014128,"present, shifted"
+"'$A01,' sender",08016702,0801A702,not code,,exact function start,0801A702,0801A702,"present, shifted"
+USART1 init (GPS),0802932C,0802D32C,not code,,not code,,,
+USART1 RX ISR (GPS),080292F8,0802D2F8,not code,,inside function,0802D2CC,0802D2CC,"present, shifted"
+OSTaskCreateExt,080249A4,080289A4,inside function,08028998,not code,,,
+OSTaskNameSet,08024A6C,08028A6C,inside function,08028A60,inside function,080289E0,080289E0,"present, shifted"
+OSStart,08027392,0802B392,inside function,0802B386,inside function,0802B356,0802B356,"present, shifted"
+UI task loop,08029178,0802D178,inside function,0802D16C,inside function,0802D15C,0802D15C,"present, shifted"
+protocol bridge ($A00/$A01),0800FE58,08013E58,exact function start,08013E58,exact function start,08013E58,08013E58,"present, shifted"
+protocol state machine,08010302,08014302,exact function start,08014302,exact function start,08014302,08014302,"present, shifted"
+per-pass routine,08015DCC,08019DCC,inside function,08019DB0,exact function start,08019DCC,08019DCC,"present, shifted"
+every-17th-pass housekeeping,0800ED24,08012D24,exact function start,08012D24,exact function start,08012D24,08012D24,"present, shifted"
+key_scan,080281A6,0802C1A6,not code,,exact function start,0802C1A6,0802C1A6,"present, shifted"
+key_get_code,080282FC,0802C2FC,inside function,0802C240,inside function,0802C288,0802C288,"present, shifted"
+UI key task body,08019DCC,0801DDCC,inside function,0801DC36,inside function,0801DC82,0801DC82,"present, shifted"
+memcpy-like,080198E0,0801D8E0,inside function,0801D8C8,inside function,0801D874,0801D874,"present, shifted"
+memset-like,080198C0,0801D8C0,inside function,0801D8A8,not code,,,
+memcmp,0801F610,08023610,not code,,inside function,08023604,08023604,"present, shifted"
+mem helper 0x080199A0,080199A0,0801D9A0,inside function,0801D988,inside function,0801D914,0801D914,"present, shifted"
+RF chip init,080227AA,080267AA,inside function,0802679E,inside function,0802674E,0802674E,"present, shifted"
+SystemInit slice,08029008,0802D008,inside function,0802CFF0,inside function,0802CFE4,0802CFE4,"present, shifted"
+fine-tune key 11,08014660,08018660,not code,,not code,,,
+fine-tune key 12,0801471E,0801871E,inside function,0801868E,inside function,08018692,08018692,"present, shifted"
+NVIC_Init,08026E26,0802AE26,inside function,0802AE1A,inside function,0802ADF4,0802ADF4,"present, shifted"
+USART_Init,08026C5C,0802AC5C,inside function,0802AC50,not code,,,
+irq_install,08026E18,0802AE18,inside function,0802AE0C,inside function,0802ADF4,0802ADF4,"present, shifted"

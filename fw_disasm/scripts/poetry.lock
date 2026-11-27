@@ -298,6 +298,21 @@ packaging = "*"
 PyYAML = "*"
 
 [[package]]
+name = "pyserial"
+version = "3.5"
+description = "Python Serial Port Extension"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"},
+    {file = "pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"},
+]
+
+[package.extras]
+cp2110 = ["hidapi"]
+
+[[package]]
 name = "pywin32-ctypes"
 version = "0.2.3"
 description = "A (partial) reimplementation of pywin32 using ctypes/cffi"
@@ -418,4 +433,4 @@ type = ["importlib_metadata (>=7.0.2)", "jaraco.develop (>=7.21)", "mypy (>=1.18
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.16"
-content-hash = "0cbcfffc8ff82ebb00553384c4fd60245f9bdbf20eaabf641eee519553d8b773"
+content-hash = "89e59b354e831e0e39754c46c426f01d5498ab4d83333f39a02da82981679847"

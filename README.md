@@ -33,6 +33,10 @@ Drivers
 
 Firmware Sources   
  * [APRS hg-uv98-firmware](https://github.com/dkxce/hg-uv98-firmware)
+
+DISASM:
+ * [by dkxce](https://github.com/dkxce/HG-UV98/blob/master/fw_disasm/REPORT.md)
+ * [by agamez](https://github.com/agamez/hg-uv98-firmware)
  
 Alternative Repository:             
  * https://github.com/pwnj0hn/HG-UV98

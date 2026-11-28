@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'fw_disasm/scripts/replace_splash.md'
+      - 'fw_disasm/pinpatch/README.md'
   workflow_dispatch:
 
 permissions:
@@ -21,4 +22,5 @@ jobs:
         with:
           translate_paths: |
             fw_disasm/scripts/replace_splash.md
+            fw_disasm/pinpatch/README.md
           convert_skip: '**'

@@ -13,7 +13,11 @@ FUN_0801D368 ставит окно 128x160, шлёт команду 0x2C и вы
 
 Запуск без аргументов открывает диалоговое ASCII-меню: там доступны все
 операции (выбор прошивки и картинки, извлечение, замена, настройки зоны и
-вписывания), ничего не нужно помнить.
+вписывания, обмен с рацией), ничего не нужно помнить.
+
+Пункт 9 меню ставит или снимает PIN-блокировку — пароль, который рация
+спрашивает при включении (payload вшит в pin_lock.py, сборка не нужна).
+Патч собран под дамп V1.1; чужой образ отклоняется.
 
     python tools/replace_splash.py
 
@@ -1049,6 +1053,179 @@ class Menu(object):
         finally:
             _close_port(ser)
 
+    # ------------------------------------------------------------ PIN lock
+    def _pin_mod(self):
+        """pin_lock.py лежит рядом с этим скриптом."""
+        here = os.path.dirname(os.path.abspath(__file__))
+        if here not in sys.path:
+            sys.path.insert(0, here)
+        import pin_lock
+        return pin_lock
+
+    def pin_state(self):
+        """Состояние PIN-блокировки в выбранном образе (строка для меню)."""
+        if not self.firmware:
+            return "no firmware selected"
+        pin_lock = self._pin_mod()
+        try:
+            data = _read_firmware(self.firmware)
+        except (OSError, ValueError) as e:
+            return "error: %s" % e
+        kind = pin_lock.state(data)
+        if kind == "patched":
+            pin = pin_lock.pin_of(data)
+            return ("ACTIVE (%d digits)" % len(pin)) if pin else \
+                   "ACTIVE (PIN slot unreadable)"
+        if kind == "original":
+            return "not active (stock boot scene)"
+        return "unknown image: V1.1 dump required (hook %s)" % \
+               pin_lock.hook_bytes(data).hex()
+
+    def _pin_output(self, suffix):
+        """Куда писать результат: новый файл или поверх исходного (с .bak)."""
+        base = os.path.splitext(self.firmware)[0]
+        print("  where to write the result:")
+        print("    [1] - new file (source untouched)")
+        print("    [2] - overwrite source, keep .bak")
+        print("    [3] - overwrite source, no backup")
+        what = _ask("  choice [1]: ", "1")
+        if what == "2":
+            return self.firmware, True
+        if what == "3":
+            return self.firmware, False
+        target = _ask_path("  new file", must_exist=False, default=base + suffix)
+        return target, False
+
+    def _pin_write(self, data, target, backup):
+        """Записать готовый образ (при необходимости с резервной копией)."""
+        if backup:
+            bak = self.firmware + ".bak"
+            if os.path.exists(bak):
+                print("  error: backup already exists: %s" % bak)
+                return False
+            try:
+                open(bak, "wb").write(_read_firmware(self.firmware))
+            except (OSError, ValueError) as e:
+                print("  error: %s" % e)
+                return False
+            print("  backup: %s" % bak)
+        try:
+            open(target, "wb").write(bytes(data))
+        except OSError as e:
+            print("  error: %s" % e)
+            return False
+        print("  written: %s (%d bytes)" % (target, len(data)))
+        return True
+
+    def pin_set(self):
+        """Включить PIN-блокировку (или заменить уже записанный PIN)."""
+        pin_lock = self._pin_mod()
+        if not self.firmware:
+            self.pick_firmware()
+            if not self.firmware:
+                return
+        try:
+            data = _read_firmware(self.firmware)
+        except (OSError, ValueError) as e:
+            print("  error: %s" % e)
+            return
+        kind = pin_lock.state(data)
+        if kind == "unknown":
+            print("  error: unsupported image - hook bytes at 0x%X are %s" % (
+                pin_lock.HOOK_OFF, pin_lock.hook_bytes(data).hex()))
+            print("  the PIN patch is built for the V1.1 dump (507904 bytes) only")
+            return
+        if kind == "patched":
+            print("  this image already has a PIN lock")
+            if not _ask_bool("  replace the existing PIN?", False):
+                print("  cancelled")
+                return
+        pin = ""
+        while not pin:
+            ans = _ask("  new PIN (4-6 digits): ")
+            if not ans:
+                print("  cancelled")
+                return
+            if pin_lock.valid_pin(ans):
+                pin = ans
+            else:
+                print("  exactly 4, 5 or 6 digits are required")
+        target, backup = self._pin_output("_locked.bin")
+        if not target:
+            return
+        try:
+            out = pin_lock.apply_pin(data, pin)
+        except (ValueError, RuntimeError) as e:
+            print("  error: %s" % e)
+            return
+        if not self._pin_write(out, target, backup):
+            return
+        print("  PIN lock: ACTIVE, %d digits (stored in the image, plaintext)" % len(pin))
+        print("  payload: 0x%08X, %d bytes; hook 0x%08X -> %s" % (
+            pin_lock.PAYLOAD_ADDR, len(pin_lock.PAYLOAD),
+            pin_lock.HOOK_ADDR, pin_lock.hook_bytes(out).hex()))
+        self.firmware = target
+        self.force = False
+        print("  current firmware: %s" % target)
+        print("  flash it with item 8 (upload firmware to the radio)")
+
+    def pin_remove(self):
+        """Снять PIN-блокировку: исходная загрузочная сцена, область пуста."""
+        pin_lock = self._pin_mod()
+        if not self.firmware:
+            self.pick_firmware()
+            if not self.firmware:
+                return
+        try:
+            data = _read_firmware(self.firmware)
+        except (OSError, ValueError) as e:
+            print("  error: %s" % e)
+            return
+        if pin_lock.state(data) != "patched":
+            print("  no PIN lock in this image - nothing to remove")
+            return
+        if not _ask_bool("  remove the PIN lock and restore the stock boot scene?",
+                         False):
+            print("  cancelled")
+            return
+        target, backup = self._pin_output("_unlocked.bin")
+        if not target:
+            return
+        try:
+            out = pin_lock.remove_pin(data)
+        except (ValueError, RuntimeError) as e:
+            print("  error: %s" % e)
+            return
+        if not self._pin_write(out, target, backup):
+            return
+        print("  PIN lock: removed (hook restored, payload area blanked)")
+        self.firmware = target
+        self.force = False
+        print("  current firmware: %s" % target)
+        print("  flash it with item 8 (upload firmware to the radio)")
+
+    def pin_menu(self):
+        while True:
+            print()
+            print("  PIN lock (the radio asks for a code at power on):")
+            print("    image: %s" % (self.firmware or "not selected"))
+            print("    state: %s" % self.pin_state())
+            print("    [1] - select firmware file")
+            print("    [2] - set PIN")
+            print("    [3] - remove PIN")
+            print("    [0] - back")
+            c = _ask("  > ")
+            if c in ("", "0"):
+                return
+            if c == "1":
+                self.pick_firmware()
+            elif c == "2":
+                self.pin_set()
+            elif c == "3":
+                self.pin_remove()
+            else:
+                print("  no such item")
+
     # -------------------------------------------------------------- подменю
     def zone_menu(self):
         while True:
@@ -1147,6 +1324,7 @@ def run_menu():
         print("  [6] - select COM port")
         print("  [7] - download firmware from the radio")
         print("  [8] - upload firmware to the radio")
+        print("  [9] - PIN lock (set / remove)")
         print("  [0] - exit")
         c = _ask("  > ")
         if c in ("0", "q", "exit"):
@@ -1168,8 +1346,10 @@ def run_menu():
             m.radio_download()
         elif c == "8":
             m.radio_upload()
+        elif c == "9":
+            m.pin_menu()
         else:
-            print("  no such item - enter 0..8")
+            print("  no such item - enter 0..9")
 
 
 def main(argv=None):

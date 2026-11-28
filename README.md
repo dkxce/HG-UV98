@@ -27,6 +27,7 @@ Software
 
 Tools
  * [Bootscreen Patcher](fw_disasm/scripts/replace_splash.en.md)
+ * [Passlock Patcher](fw_disasm/pinpatch/README.en.md)
 
 Drivers     
  * [USB-UART](Drivers)

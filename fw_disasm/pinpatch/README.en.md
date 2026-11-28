@@ -11,14 +11,14 @@ PIN (4-6 digits) is set when the script is started and sewn into the image.
 
 | Code. | keyboard | Action. |
 | --- | --- | --- |
-| 0-9 | figures | symbolization |
+| 0-9 | figure | symbolization |
 | 10 | Menou | confirm |
 | 13 | AB/BACK | erase |
-| 11, 12. | UP / DOWN | ignored |
+| 11, 12. | UP/Down | ignored |
 | 14, 15. | `*`, `#` | ignored |
 
-Verification under way**Menus only**There is no automatic length check.
-If you press MENU with the digits entered, but the length does not match the PIN, this is
+Check under way**Menus only**There is no automatic length check.
+If you press MENU when the numbers are entered, but the length is not the same as the PIN, it is
 mistake. You can't get out of the lockdown.
 
 Codes are taken from recovered tables: 10 = MENU, 11/12 = up/down, 13 = BACK, 14/15 =`*`/`#`.
@@ -35,9 +35,9 @@ No more bytes change - checked by byte diff
 
 ## How it works.
 
-* Hook stands right after the screensaver is taken out.
+* Hook stands right after the screensaver comes out.
 * Stub executes the repressed instruction and returns to 0x0801B7AC.
-* Drawing - directly into the panel:`display_set_window`0x0801B9B .`tft_write_cmd`0x0801BA52 .`tft_write_byte`0x0801BA74 - same
+* Drawing - directly into the panel:`display_set_window`0x0801B9B .`tft_write_cmd`0x0801BA52 .`tft_write_byte`0x0801BA74 is the same
   consistency that the staff`display_fill_rect`, including PC2.
   No buffers on the stack: frame function ≤ 48 bytes (task stack ~1 KB).
   Your 8×16 (1520 bytes) font is sewn into payload.
@@ -49,16 +49,16 @@ No more bytes change - checked by byte diff
 
 ## File structure
 
-Patch is collected from the source, and the finished payload is sewn directly into`patch_password.py`So you don't need Tulchain for a patch.
+The patch is collected from the source, and the finished payload is sewn directly into the`patch_password.py`So you don't need Tulchain for a patch.
 
 | File. | What is it? | Responsible for |
 | --- | --- | --- |
 | `patch_password.py` | Patcher (main script) | Stitches the PIN into the image: inserts the payload into the 0x46000 area, puts the hook`b.w`In 0x0801B7A8, checks the built-in payload by MD5. It contains a ready-made payload (hex) + PIN slot. Python 3 is enough to work without Tulchain |
 | `payload.c` | Source payload in C | Logic of locking: rendering the PIN screen, input from`key_scan`Check code, bootscreen after success. Works in the free domain 0x0804A000 |
-| `pinblob.c` | PIN slot (separate unit) | Massive`pin_blob[16]`magic`PWN1`, length, numbers, XOR control. Taken to a separate file so that GCC does not fold the patched bytes into a constant and discard the code |
+| `pinblob.c` | PIN slot (separate unit) | Massive`pin_blob[16]`magic`PWN1`, length, numbers, XOR control. Taken to a separate file so that the GCC does not fold the patched bytes into a constant and throw out the code |
 | `start.S` | Payload entry point | Stub: saves registers, calls`pin_gate()`, executes the repressed instruction and returns to 0x0801B7AC |
 | `font.S` | Font connection | Includes`font8x16.bin`sectionally`.rodata`how`font8x16` |
-| `font8x16.bin` | Font 8×16 (1520 bytes) | ASCII-glyphs for all inscriptions on the screen |
+| `font8x16.bin` | Font 8×16 (1520 bytes) | ASCII glyphs for all inscriptions on the screen |
 | `link.ld` | Link script | Distributes sections from 0x0804A000:`.text`, `.rodata`, `.pinblob`, `.data` |
 | `payload.bin` | Collected payload (ready) | Result of assembly:`arm-none-eabi-gcc … && objcopy`; put in the form of a patcher |
 | `dist\patch_password.exe` | Ready patcher (Windows) | Self-sufficient exe: built-in Python + payload, tolchain and Python**leave out**. Starts in the same place, or from any folder, if you specify the full path |
@@ -121,7 +121,7 @@ Done.
 Flash via IAP 'Download Image', COM 115200 8N1, file locked.bin
 ```
 
-If`--pin`not specified, the script will ask for the password interactively (entering does not
+If`--pin`not specified, the script will ask for the password interactively (entry is not required)
 screened, it's just a line:
 
 ```
@@ -165,7 +165,7 @@ python patch_password.py unknown_image.bin --pin 1234 --force
 
 ### Ready Exe (without Python)
 
-In a file.`dist\`laid`patch_password.exe`- self-sufficient
+In a folder.`dist\`laid`patch_password.exe`- self-sufficient
 Windows binary with built-in Python and payload. For him.**leave out**neither
 Tulchain or Python installed: runs on any Windows x64.
 
@@ -197,7 +197,7 @@ arm-none-eabi-objcopy -O binary payload.elf payload.bin
 
 **Important:**only`-O0`. Nana`-O1`/`-Os`GCC considers functions called through
 pointers to fixed addresses, "clean" and removes calls - payload
-It shrinks to 84 bytes and becomes an empty cycle.`-fno-ipa-pure-const`It helps only partially (the lines are missing).`-O0`Gets it all right.
+It shrinks to 84 bytes and becomes an empty cycle.`-fno-ipa-pure-const`It helps only partially (the lines are missing).`-O0`Getting it all right.
 
 `pin_blob`separate`pinblob.c`so that the compiler does not fold
 Patched bytes to constant.
@@ -207,9 +207,9 @@ Tulchain patch is not needed.
 
 ## Limitations
 
-* Just a dump.**V1. 1st**(507,904 bytes). The script checks the hook bytes and
+* Just a dump.**V1. 1st**(507,904 bytes). The script checks bytes of the hook and
   They will refuse to work in any other way.
-* UI and main MK keyboard are blocked. APRS-coprocessor STC8 lives
+* Block UI and keyboard main MK. APRS-coprocessor STC8 lives
   separately - its transmission patch does not disable.
 * PIN is stored openly (it is a lock from accidental inclusion, not crypto protection).
 * The loader is not affected: rollback - fill the original dump.
@@ -218,29 +218,33 @@ Tulchain patch is not needed.
 
 * The image size does not change (507 904);
 * Only 4 bytes of the hook and the payload area change.
-* Payload in the image of a byte is equal to`payload.bin`(except the PIN slot);
+* Payload in the image of a byte is equal`payload.bin`(except the PIN slot);
 * Call pointers - with Thumb-bit;
 * `b.w`Decoded exactly in 0x0804A000;
 * PIN Slot: Magic`PWN1`length, numbers, XOR control;
 * Repeated patch of the already patched image works;
 * PIN validated: 3 digits, 7 digits and letters rejected
 * Built-in payload is checked by MD5 at each launch.
-* It's on the radio.
+* It works on the radio.
 
 ## History of corrections
 
 1. In the first build, the built-in payload diverged from the collected by one byte:
-   pointer`key_scan`remained even`blx`In the ARM-state → HardFault
-   At the first push. Corrected, added MD5 reconciliation.
+   pointer`key_scan`remained even`blx`in the ARM state of HardFault
+   At the first push. Corrected, MD5 reconciliation added.
 2. The second version of the GCC`-Os`Deleted all drawing calls (see above)
    build-up`-O0`.
 3. The third version drew through 256B buffers on the stack - stack overflow
    tasks, the board showed only the boot logo. Drawing translated
-   Direct recording of pixels without buffers.
+   Direct pixel recording without buffers.
 4. In the fourth version was confused polarity CS: Helper`0x08023770`write**BRRR**(dumping)`0x08023768`in**BSRR**(installation), that is,
    The standard code first resets PC1, and at the end installs. Because
-   The panel ignored the entire stream: the screen remained on the
+   In reverse order, the panel ignored the entire stream: the screen remained on
    The screensaver, although PIN input worked.
+
+## Photo Photo
+
+<img src="images/real.jpg" width="200"/>
 
 ---
 
